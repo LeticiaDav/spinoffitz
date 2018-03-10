@@ -1,0 +1,46 @@
+html {
+	box-sizing: border-box;
+}
+
+*, *:before, *:after {
+	box-sizing: inherit;
+}
+
+body {
+	background-color: #F2F2F2;
+	font-family: 'Open Sans', sans-serif;
+}
+
+.contenedor {
+	width: 98%;
+	margin: 0 auto;
+}
+
+@media only screen and (min-width: 480px) {
+	.contenedor {
+		width: 95%;
+		margin: 0 auto;
+	}
+}
+
+@media only screen and (min-width: 768px) {
+	.contenedor {
+		width: 90%;
+	}
+}
+
+@media only screen and (min-width: 992px) {
+	.contenedor {
+		width: 90%;
+		max-width: 1100px;
+	}
+}
+
+.navegacion {
+	background-color: #ffffff;
+	padding: 10px 0;
+}
+
+img.logo {
+	height: 70px;
+}
