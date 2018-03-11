@@ -179,6 +179,7 @@ div.contenido-header {
 
 div.barra {
     padding: 10px 0;
+    margin-bottom: 20px;
     background-color: #F2F2F2;
 }
 
@@ -198,9 +199,10 @@ nav.navegacion-principal {
 
 nav.navegacion-principal a {
     color: #808080;
-    font-size: 1em;
+    font-size: 1.1em;
     text-decoration: none;
-    font-family: 'Abel', sans-serif;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 500;
     line-height: 60px;
     padding: 5px 10px;
     background-color: #E6E6E6;
@@ -267,7 +269,7 @@ div.menu-movil:hover {
 /*~~~~~ Contenido principal ~~~~~*/
 
 div.izquierdo {
-    background-color: #FFFFE3;
+    background-color: #E3F2FF;
     height: 100vh;
 }
 
@@ -295,14 +297,15 @@ footer.site-footer {
     background-color: #F2F2F2;
     padding-top: 20px;
     margin-top: 20px;
-    font-family: 'Abel', sans-serif;
+    font-family: 'Hind', sans-serif;
     color: #808080;
     
 }
 
 footer.site-footer h3 {
     color: #333333;
-    font-family: 'Abel', sans-serif;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
     text-transform: uppercase;
     margin-bottom: 20px;
 }
@@ -344,16 +347,28 @@ footer.site-footer img.itz {
     }
 }
 
-footer p.copyright {
-    background-color: #13383E;
-    color: #8bf48b;
+footer.site-footer .copyright {
+	background-color: #13383E;
+    color: #5D9B5D;
+}
+
+footer.site-footer .copyright p {
     padding: 10px 0;
     margin: 20px 0 0 0;
     text-align: center;
+    font-family: 'Barlow Semi Condensed', sans-serif;
 }
 
+footer .copyright p span {
+	color: #8bf48b;
+	font-weight: 700px;
+	font-size: 15px;
+}
 
-
+footer .copyright a {
+	color: #5D9B5D;
+	text-decoration: none;
+}
 
 
 
