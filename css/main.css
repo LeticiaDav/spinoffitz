@@ -302,7 +302,7 @@ footer.site-footer {
 
 footer.site-footer h3 {
     color: #333333;
-    font-family: 'Roboto Condensed', sans-serif;
+    font-family: 'Abel', sans-serif;
     text-transform: uppercase;
     margin-bottom: 20px;
 }
@@ -327,6 +327,10 @@ footer .footer-logo {
     }
 }
 
+footer.site-footer img.itz {
+	width: 80px;
+}
+
 @media only screen and (min-width: 768px) {
     footer .footer-logo {
         float: left;
@@ -334,10 +338,10 @@ footer .footer-logo {
 		margin-top: 25px;
 		text-align: right;
     }
-}
 
-footer.site-footer img.itz {
-	width: 100px;
+    footer.site-footer img.itz {
+    	width: 100px;
+    }
 }
 
 footer p.copyright {
