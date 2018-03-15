@@ -46,9 +46,9 @@
 					<span></span>
 				</div>
 				<nav class="navegacion-principal clearfix">
-					<a href="index.php">Inicio</a>
+					<a class="activo" href="index.php">Inicio</a>
 					<a href="spinoffs.php">Spin-Offs del ITZ</a>
-					<a class="activo" href="noticias.html">Noticias</a>
+					<a href="noticias.html">Noticias</a>
 					<a href="eventos.html">Eventos</a>
 				</nav>
 			</div>
@@ -58,11 +58,78 @@
 		<div class="clearfix">
 			<div class="main">
 				<section class="contenedor">
-					<h2>Noticias</h2>
-	
-					<!-- Spin-off -->
+					<h2>Inicio</h2>
+					<?php 
+					try {
+						require_once('includes/funciones/bd_conexion.php');
+						$sql = "SELECT nombreSpinoff, giroSpinoff, descripcionSpinoff, serviciosSpinoff, proyectosSpinoff, integrantesSpinoff, emailSpinoff, telefonoSpinoff, imagenSpinoff, videoSpinoff "; 
+						$sql .= "FROM spinoff ";
+						if (!$resultado = $conn->query($sql)) {
+							echo "Lo sentimos, este sitio web está experimentando problemas.";
+							 // De nuevo, no hacer esto en un sitio público
+							echo "Error: La ejecución de la consulta falló debido a: \n";
+							echo "Query: " . $sql . "\n";
+							echo "Errno: " . $mysqli->errno . "\n";
+							echo "Error: " . $mysqli->error . "\n";
+							exit;
+						}
+						$resultado = $conn->query($sql);
+					} catch(Exception $e) {
+						$error = $e->getMessaege();
+					}
+					?>
+
 					<div class="spinoff">
-						<p class="nombre">Proximamente...</p>
+						<?php while($spinoffs = $resultado->fetch_assoc()) { ?>
+						<p class="nombre">
+							<?php echo $spinoffs['nombreSpinoff']; ?>	
+						</p>
+						<p class="giro">
+							<?php echo $spinoffs['giroSpinoff']; ?>
+						</p>
+						<hr>
+						<p class="descripcion">
+							<?php echo $spinoffs['descripcionSpinoff']; ?>
+						</p>
+						<h1>Servicios</h1>
+						<p class="servicios">
+							<?php echo str_replace("\n", "<br>", $spinoffs['serviciosSpinoff']); ?>
+						</p>
+						<h1>Proyectos</h1>
+						<p class="proyectos">
+							<?php echo str_replace("\n", "<br>", $spinoffs['proyectosSpinoff']); ?>
+						</p>
+						<h1>Integrantes</h1>
+						<p class="integrantes">
+							<?php echo str_replace("\n", "<br>", $spinoffs['integrantesSpinoff']); ?>
+						</p>
+
+						<!-- video -->
+
+						<h1>Video</h1>
+						<iframe class="video" src="<?php echo $spinoffs['videoSpinoff'] ?>" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+						<!-- fin de video -->
+						<hr>
+						<p class="email">
+							<?php echo $spinoffs['emailSpinoff']; ?>
+						</p>
+						<p class="telefono">
+							<?php echo $spinoffs['telefonoSpinoff']; ?>
+						</p>
+
+						<?php } ?>
+
+						<?php  
+						// El script automáticamente liberará el resultado y cerrará la conexión a MySQL
+						$resultado->free();
+						$conn->close();
+						?>
+					</div>
+
+					<!-- Otro spin-off -->
+					<div class="spinoff">
+						<p class="nombre">Más proximamente...</p>
 					</div>
 
 

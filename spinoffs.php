@@ -46,17 +46,95 @@
 					<span></span>
 				</div>
 				<nav class="navegacion-principal clearfix">
-					<a href="index.html"><i class="fas fa-home"></i> Inicio</a>
-					<a href="spinoffs.html"><i class="fab fa-superpowers"></i> Spin-Offs del ITZ</a>
-					<a href="noticias.html"><i class="far fa-newspaper"></i> Noticias</a>
-					<a href="eventos.html"><i class="far fa-calendar-alt"></i> Eventos</a>
+					<a href="index.php">Inicio</a>
+					<a class="activo" href="spinoffs.php">Spin-Offs del ITZ</a>
+					<a href="noticias.html">Noticias</a>
+					<a href="eventos.html">Eventos</a>
 				</nav>
 			</div>
 		</div>
 		
 		<!-- Contenido principal -->
 		<div class="clearfix">
-			<div class="izquierdo">
+			<div class="main">
+				<section class="contenedor">
+					<h2>Spin-offs del ITZ</h2>
+					<?php 
+					try {
+						require_once('includes/funciones/bd_conexion.php');
+						$sql = "SELECT nombreSpinoff, giroSpinoff, descripcionSpinoff, serviciosSpinoff, proyectosSpinoff, integrantesSpinoff, emailSpinoff, telefonoSpinoff, imagenSpinoff, videoSpinoff "; 
+						$sql .= "FROM spinoff ";
+						if (!$resultado = $conn->query($sql)) {
+							echo "Lo sentimos, este sitio web está experimentando problemas.";
+							 // De nuevo, no hacer esto en un sitio público
+							echo "Error: La ejecución de la consulta falló debido a: \n";
+							echo "Query: " . $sql . "\n";
+							echo "Errno: " . $mysqli->errno . "\n";
+							echo "Error: " . $mysqli->error . "\n";
+							exit;
+						}
+						$resultado = $conn->query($sql);
+					} catch(Exception $e) {
+						$error = $e->getMessaege();
+					}
+					?>
+
+					<div class="spinoff">
+						<?php while($spinoffs = $resultado->fetch_assoc()) { ?>
+						<p class="nombre">
+							<?php echo $spinoffs['nombreSpinoff']; ?>	
+						</p>
+						<p class="giro">
+							<?php echo $spinoffs['giroSpinoff']; ?>
+						</p>
+						<hr>
+						<p class="descripcion">
+							<?php echo $spinoffs['descripcionSpinoff']; ?>
+						</p>
+						<h1>Servicios</h1>
+						<p class="servicios">
+							<?php echo str_replace("\n", "<br>", $spinoffs['serviciosSpinoff']); ?>
+						</p>
+						<h1>Proyectos</h1>
+						<p class="proyectos">
+							<?php echo str_replace("\n", "<br>", $spinoffs['proyectosSpinoff']); ?>
+						</p>
+						<h1>Integrantes</h1>
+						<p class="integrantes">
+							<?php echo str_replace("\n", "<br>", $spinoffs['integrantesSpinoff']); ?>
+						</p>
+
+						<!-- video -->
+
+						<h1>Video</h1>
+						<iframe class="video" src="<?php echo $spinoffs['videoSpinoff'] ?>" frameborder="0" allowfullscreen></iframe>
+
+						<!-- fin de video -->
+						
+						<hr>
+						<p class="email">
+							<?php echo $spinoffs['emailSpinoff']; ?>
+						</p>
+						<p class="telefono">
+							<?php echo $spinoffs['telefonoSpinoff']; ?>
+						</p>
+
+						<?php } ?>
+
+						<?php  
+						// El script automáticamente liberará el resultado y cerrará la conexión a MySQL
+						$resultado->free();
+						$conn->close();
+						?>
+					</div>
+
+					<!-- Otro spin-off -->
+					<div class="spinoff">
+						<p class="nombre">Más proximamente...</p>
+					</div>
+
+
+				</section>
 			</div>
 			<div class="derecho">
 			</div>
@@ -67,7 +145,7 @@
 			<div class="contenedor clearfix">
 				<div class="footer-info">
 					<h3>Sobre Spin-Off ITZ</h3>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto placeat sint inventore totam debitis vel sapiente temporibus recusandae sed neque facilis, aut accusamus voluptate suscipit, qui, ullam rem quibusdam quaerat. Dolore nemo laboriosam iure doloribus similique eligendi fugit, quam mollitia saepe veniam quae inventore non sapiente perspiciatis impedit officiis esse.</p>
+					<p>Un spin-off o derivado es un término anglosajón que se refiere a un proyecto nacido como extensión de otro anterior, o más aún de una empresa nacida a partir de otra mediante la separación de una división subsidiaria o departamento de la empresa para convertirse en una empresa por sí misma.</p>
 				</div>
 				<div class="footer-logo">
 					<a href="http://mapaches3.itz.edu.mx/itz_rg/" target="_blank">
@@ -79,7 +157,7 @@
 				<div class="contenedor">
 					<p>
 						<!-- <a href="https://icons8.com">Iconos por <span>Icons8</span></a><br> -->
-						Todos los derechos reservados <span>Worktecs 2018</span>
+						Todos los derechos reservados <span>~ Worktecs 2018</span>
 					</p>
 				</div>
 			</div>

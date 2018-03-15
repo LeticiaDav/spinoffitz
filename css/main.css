@@ -108,7 +108,7 @@ html {
 }
 
 body {
-    background-color: #fefefe;
+    background-color: #FAFAFA;
 }
 
 .contenedor {
@@ -180,7 +180,16 @@ div.contenido-header {
 div.barra {
     padding: 10px 0;
     margin-bottom: 20px;
-    background-color: #F2F2F2;
+    background-color: #FFFFFF;
+    box-shadow: 0px 0px 20px lightgray;
+}
+
+.fixed {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 2;
 }
 
 div.barra div.logo {
@@ -198,19 +207,20 @@ nav.navegacion-principal {
 }
 
 nav.navegacion-principal a {
-    color: #808080;
-    font-size: 1.1em;
+    color: #000000;
+    font-size: 1em;
     text-decoration: none;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 500;
+    font-family: 'Barlow Semi Condensed', sans-serif;
+    font-weight: 600;
     line-height: 60px;
     padding: 5px 10px;
-    background-color: #E6E6E6;
+    /*background-color: #E6E6E6;*/
     transition: all .2s linear;
-    width: 100%;
+    /*width: 100%;*/
     display: block;
-    text-align: center;
+    /*text-align: center;*/
     margin-bottom: 20px;
+    text-transform: uppercase;
     clear: both;
 }
 
@@ -223,7 +233,7 @@ nav.navegacion-principal a {
     }
 
     nav.navegacion-principal a {
-        margin-left: 10px;
+        margin-left: 20px;
         padding: 5px 10px;
         border-radius: 10px;
         width: auto;
@@ -233,9 +243,14 @@ nav.navegacion-principal a {
     }
 }
 
+nav.navegacion-principal a.activo {
+    background-color: #13F485;
+    color: #004D57;
+}
+
 nav.navegacion-principal a:hover {
-    background-color: #ffffff;
-    color: #333333;
+    background-color: #8bf48b;
+    color: #1a4e57;
 }
 
 /*~~~~~ Menú movil ~~~~~*/
@@ -268,18 +283,21 @@ div.menu-movil:hover {
 
 /*~~~~~ Contenido principal ~~~~~*/
 
-div.izquierdo {
-    background-color: #E3F2FF;
-    height: 100vh;
+div.main {
+    /*background-color: #E3F2FF;*/
+    /*border: 1px #EEEEEE solid;*/
+    padding-bottom: 30px;
+    /*height: 100vh;*/
 }
 
 div.derecho {
-    background-color: #EDFFED;
-    height: 100vh;
+    /*background-color: #EDFFED;*/
+    border: 1px #EEEEEE solid;
+    /*height: 100vh;*/
 }
 
 @media only screen and (min-width: 768px) {
-    div.izquierdo {
+    div.main {
         float: left;
         width: 80%;
     }
@@ -294,18 +312,17 @@ div.derecho {
 /*~~~~~ Footer ~~~~~*/
 
 footer.site-footer {
-    background-color: #F2F2F2;
+    background-color: #FFFFFF;
     padding-top: 20px;
-    margin-top: 20px;
+    margin-top: 10px;
     font-family: 'Barlow', sans-serif;
-    font-weight: 500;
-    color: #808080;
-    
+    color: #333333;
+    box-shadow: 0px 0px 20px lightgray;   
 }
 
 footer.site-footer h3 {
-    color: #333333;
-    font-family: 'Barlow Condensed', sans-serif;
+    color: #000000;
+    font-family: 'Barlow Semi Condensed', sans-serif;
     font-weight: 600;
     text-transform: uppercase;
     margin-bottom: 20px;
@@ -349,8 +366,8 @@ footer.site-footer img.itz {
 }
 
 footer.site-footer .copyright {
-	background-color: #13383E;
-    color: #5D9B5D;
+	background-color: #004D57;
+    color: #13F485;
 }
 
 footer.site-footer .copyright p {
@@ -358,21 +375,80 @@ footer.site-footer .copyright p {
     margin: 20px 0 0 0;
     text-align: center;
     font-family: 'Barlow Semi Condensed', sans-serif;
-    font-weight: 400;
+    font-weight: 300;
     text-transform: uppercase;
 }
 
 footer .copyright p span {
-	color: #8bf48b;
-	font-weight: 700px;
-	font-size: 15px;
+	font-family: 'Barlow Semi Condensed', sans-serif;
+    font-weight: 600;
 }
 
-footer .copyright a {
-	color: #5D9B5D;
-	text-decoration: none;
+/*~~~~~ Contenido principal ~~~~~*/
+
+.main h2 {
+    font-family: 'Barlow Semi Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 0.8em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    color: #808080;
 }
 
+.spinoff {
+    background-color: #FFFFFF;
+    padding: 5px 30px;
+    border-radius: 20px;
+    box-shadow: 0px 0px 20px lightgray;
+    margin: 20px 0;
+}
+
+.spinoff p.nombre {
+    font-family: 'Barlow Semi Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 2.4em;
+    line-height: 10px;
+}
+
+.spinoff p.giro {
+    font-family: 'Barlow Semi Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 1em;
+    text-transform: uppercase;
+    margin-top: -20px;
+}
+
+.spinoff p.descripcion,
+.spinoff p.servicios,
+.spinoff p.proyectos,
+.spinoff p.integrantes {
+    font-family: 'Barlow', sans-serif;
+    font-weight: 500;
+    font-size: 1em;
+}
+
+.spinoff iframe.video {
+    max-width: 100%;
+    height: auto;
+
+}
+
+.spinoff h1 {
+    margin-top: 30px;
+    line-height: 0px;
+    font-family: 'Barlow Semi Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 1em;
+}
+
+.spinoff p.email,
+.spinoff p.telefono {
+    font-family: 'Barlow Semi Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 1em;
+    /*text-transform: uppercase;*/
+    margin-top: -10px;
+}
 
 
 
