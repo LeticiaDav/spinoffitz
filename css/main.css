@@ -193,17 +193,18 @@ div.barra {
 }
 
 div.barra div.logo {
-    width: 20%;
+    height: 20%;
     float: left;
 }
 
 div.barra div.logo img {
-    max-width: 75px;
+    max-height: 40px;
+    margin-top: 10px;
 }
 
 nav.navegacion-principal {
     display: none;
-    width: 100%;
+    margin: auto 0;display: block;
 }
 
 nav.navegacion-principal a {
@@ -249,8 +250,8 @@ nav.navegacion-principal a.activo {
 }
 
 nav.navegacion-principal a:hover {
-    background-color: #8bf48b;
-    color: #1a4e57;
+    background-color: #F2F2F2;
+    color: black;
 }
 
 /*~~~~~ Menú movil ~~~~~*/

@@ -38,7 +38,7 @@
 		<div class="barra">
 			<div class="contenedor clearfix">
 				<div class="logo">
-					<img src="img/logo_simple.png" alt="Logo de Spin-Off ITZ">
+					<img src="img/logo_simple2.png" alt="Logo de Spin-Off ITZ">
 				</div>
 				<div class="menu-movil">
 					<span></span>
@@ -50,6 +50,7 @@
 					<a href="spinoffs.php">Spin-Offs del ITZ</a>
 					<a href="noticias.html">Noticias</a>
 					<a href="eventos.html">Eventos</a>
+					<a href="#">Buscar</a>
 				</nav>
 			</div>
 		</div>
