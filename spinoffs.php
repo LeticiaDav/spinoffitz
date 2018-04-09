@@ -12,11 +12,12 @@
         <!-- Place favicon.ico in the root directory -->
 
         <link rel="stylesheet" href="css/normalize.css">
-        <link rel="stylesheet" href="css/main.css">
         <link rel="stylesheet" type="text/css" href="css/estilos.css">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       	rel="stylesheet">
       	<link href="https://fonts.googleapis.com/css?family=Abel|Hind|Roboto|Roboto+Condensed|Rajdhani:300,400,500,600,700|Khand:400,500,600,700|Barlow:100,100i,200,200i,300,300i,400,400i,500i,600,600i,700,700i,800,800i,900,900i|Barlow+Semi+Condensed:100,100i,200,200i,300,300i,400,400i,500i,600,600i,700,700i,800,800i,900,900i|Barlow+Condensed:100,100i,200,200i,300,300i,400,400i,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    	<link rel="stylesheet" href="css/colorbox.css">
+    	<link rel="stylesheet" href="css/main.css">
     </head>
     <body>
         
@@ -35,7 +36,7 @@
 		</div>
 
 		<!-- Barra -->
-		<div class="barra">
+		<div class="barra" id="barra">
 			<div class="contenedor clearfix">
 				<div class="logo">
 					<img src="img/logo_simple.png" alt="Logo de Spin-Off ITZ">
@@ -62,7 +63,7 @@
 					<?php 
 					try {
 						require_once('includes/funciones/bd_conexion.php');
-						$sql = "SELECT nombreSpinoff, giroSpinoff, descripcionSpinoff, serviciosSpinoff, proyectosSpinoff, integrantesSpinoff, emailSpinoff, telefonoSpinoff, imagenSpinoff, videoSpinoff "; 
+						$sql = "SELECT idSpinoff, nombreSpinoff, giroSpinoff, descripcionSpinoff, serviciosSpinoff, proyectosSpinoff, integrantesSpinoff, emailSpinoff, telefonoSpinoff, imagenSpinoff, videoSpinoff "; 
 						$sql .= "FROM spinoff ";
 						if (!$resultado = $conn->query($sql)) {
 							echo "Lo sentimos, este sitio web está experimentando problemas.";
@@ -79,58 +80,80 @@
 					}
 					?>
 
-					<div class="spinoff">
+					
+					<section class="spinoffs_contenedor">
 						<?php while($spinoffs = $resultado->fetch_assoc()) { ?>
-						<p class="nombre">
-							<?php echo $spinoffs['nombreSpinoff']; ?>	
-						</p>
-						<p class="giro">
-							<?php echo $spinoffs['giroSpinoff']; ?>
-						</p>
-						<hr>
-						<p class="descripcion">
-							<?php echo $spinoffs['descripcionSpinoff']; ?>
-						</p>
-						<h1>Servicios</h1>
-						<p class="servicios">
-							<?php echo str_replace("\n", "<br>", $spinoffs['serviciosSpinoff']); ?>
-						</p>
-						<h1>Proyectos</h1>
-						<p class="proyectos">
-							<?php echo str_replace("\n", "<br>", $spinoffs['proyectosSpinoff']); ?>
-						</p>
-						<h1>Integrantes</h1>
-						<p class="integrantes">
-							<?php echo str_replace("\n", "<br>", $spinoffs['integrantesSpinoff']); ?>
-						</p>
-
-						<!-- video -->
-
-						<h1>Video</h1>
-						<iframe class="video" src="<?php echo $spinoffs['videoSpinoff'] ?>" frameborder="0" allowfullscreen></iframe>
-
-						<!-- fin de video -->
-						
-						<hr>
-						<p class="email">
-							<?php echo $spinoffs['emailSpinoff']; ?>
-						</p>
-						<p class="telefono">
-							<?php echo $spinoffs['telefonoSpinoff']; ?>
-						</p>
-
+							<a class="spinoff-info" href="#spinoff<?php echo $spinoffs['idSpinoff']; ?>">
+								<div class="tarjeta">
+									<div class="tarjeta-info">
+											<!-- Nombre -->
+											<p class="nombre">
+												<?php echo $spinoffs['nombreSpinoff']; ?>	
+											</p>
+									</div>
+								</div>
+							</a>
+							<div style="display: none;">
+								<div class="spinoff-info" id="spinoff<?php echo $spinoffs['idSpinoff']; ?>">
+									<div class="tarjeta-info">
+										<!-- Nombre -->
+										<p class="nombre">
+											<?php echo $spinoffs['nombreSpinoff']; ?>	
+										</p>
+										<!-- Giro -->
+										<p class="giro">
+											<?php echo $spinoffs['giroSpinoff']; ?>
+										</p>
+										<hr>
+										<!-- Descripcion -->
+										<h1>Descripción</h1>
+										<p class="descripcion">
+											<?php echo $spinoffs['descripcionSpinoff']; ?>
+										</p>
+										<!-- Servicios -->
+										<h1>Servicios</h1>
+										<p class="servicios">
+											<?php echo str_replace("\n", "<br>", $spinoffs['serviciosSpinoff']); ?>
+										</p>
+										<!-- Proyectos -->
+										<h1>Proyectos</h1>
+										<p class="proyectos">
+											<?php echo str_replace("\n", "<br>", $spinoffs['proyectosSpinoff']); ?>
+										</p>
+										<!-- Integrantes -->
+										<h1>Integrantes</h1>
+										<p class="integrantes">
+											<?php echo str_replace("\n", "<br>", $spinoffs['integrantesSpinoff']); ?>
+										</p>
+										<!-- Video -->
+										<?php if ($spinoffs['videoSpinoff']==null) { ?>
+										<?php } else { ?>	
+											<h1>Video</h1>
+											<iframe class="video" src="<?php echo $spinoffs['videoSpinoff'] ?>" frameborder="0" allowfullscreen></iframe>
+										<?php } ?>
+										<hr>
+										<!-- Email -->
+										<p class="email"><span>Email: </span><?php echo $spinoffs['emailSpinoff']; ?>
+										</p>
+										<!-- Telefono -->
+										<p class="telefono"><span>Teléfono: </span><?php echo $spinoffs['telefonoSpinoff']; ?>
+										</p>
+									</div>
+								</div>
+							</div>
 						<?php } ?>
+					</section>
 
 						<?php  
 						// El script automáticamente liberará el resultado y cerrará la conexión a MySQL
 						$resultado->free();
 						$conn->close();
 						?>
-					</div>
-
 					<!-- Otro spin-off -->
-					<div class="spinoff">
-						<p class="nombre">Más proximamente...</p>
+					<div class="tarjeta">
+						<div class="tarjeta-info">
+							<p class="giro">Más proximamente...</p>
+						</div>
 					</div>
 
 
@@ -172,6 +195,7 @@
         <script src="js/plugins.js"></script>
         <script src="js/main.js"></script>
         <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+        <script src="js/jquery.colorbox-min.js"></script>
 
         <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
         <script>

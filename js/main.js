@@ -19,4 +19,7 @@ $(function() {
 	// $('.menu-movil').on('click', function() {
 	// 	$('.navegacion-principal').slideToggle();
 	// });
+
+	// colorbox
+	$('.spinoff-info').colorbox({inline: true, width:"50%"});
 });

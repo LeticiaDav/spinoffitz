@@ -97,9 +97,9 @@
    Author's custom styles
    ========================================================================== */
 
-/*~~~~~ Globales ~~~~~*/
+   /*~~~~~ Globales ~~~~~*/
 
-html {
+   html {
     box-sizing: border-box;
 }
 
@@ -171,8 +171,8 @@ div.contenido-header {
     text-align: center;
     position: absolute;
     top: 50%; 
-	left: 50%;
-	transform: translate(-50%, -50%);
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 /*~~~~~ Barra ~~~~~*/
@@ -190,6 +190,16 @@ div.barra {
     top: 0;
     left: 0;
     z-index: 2;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.sticky + .main {
+  padding-top: 60px;
 }
 
 div.barra div.logo {
@@ -285,16 +295,17 @@ div.menu-movil:hover {
 /*~~~~~ Contenido principal ~~~~~*/
 
 div.main {
-    /*background-color: #E3F2FF;*/
-    /*border: 1px #EEEEEE solid;*/
+    /*background-color: #DE1414;*/
+    border: 1px #EEEEEE solid;
     padding-bottom: 30px;
     /*height: 100vh;*/
+    /*display: none;*/
 }
 
 div.derecho {
     /*background-color: #EDFFED;*/
-    border: 1px #EEEEEE solid;
-    /*height: 100vh;*/
+    /*border: 1px #EEEEEE solid;*/
+    height: 100vh;
 }
 
 @media only screen and (min-width: 768px) {
@@ -310,6 +321,99 @@ div.derecho {
     }
 }
 
+/*~~~~~ Contenido principal ~~~~~*/
+
+.main h2 {
+    font-family: 'Barlow Semi Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 0.8em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    color: #808080;
+}
+
+.tarjeta {
+    background-color: #FFFFFF;
+    padding: 5px 30px;
+    /*border-radius: 20px;*/
+    border-radius: 8px;
+    box-shadow: 0px 0px 20px lightgray;
+    margin: 20px 0;
+}
+
+.spinoffs_contenedor a {
+    text-decoration: none;
+}
+
+.spinoffs_contenedor a:focus {
+    width:0px;
+    height:0px;
+    outline:0px;
+}
+
+a.spinoff-info div.tarjeta p {
+    font-size: 1.5em;
+    color: black;
+}
+
+a.spinoff-info div.tarjeta:hover {
+    background-color: #FCFCFC;
+    border-bottom: 2px solid #13F485;
+    margin-bottom: -2px;
+}
+
+.tarjeta-info p.nombre {
+    font-family: 'Barlow Semi Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 2.2em;
+    line-height: 10px;
+}
+
+.tarjeta-info p.giro {
+    font-family: 'Barlow Semi Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 1em;
+    text-transform: uppercase;
+}
+
+.tarjeta-info p.descripcion,
+.tarjeta-info p.servicios,
+.tarjeta-info p.proyectos,
+.tarjeta-info p.integrantes,
+.tarjeta-info p.email,
+.tarjeta-info p.telefono {
+    font-family: 'Barlow', sans-serif;
+    font-weight: 500;
+    font-size: 1em;
+}
+
+.tarjeta-info p.email span,
+.tarjeta-info p.telefono span {
+    margin-top: 30px;
+    line-height: 0px;
+    font-family: 'Barlow Semi Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 1em;
+}
+
+.tarjeta-info iframe.video {
+    max-width: 100%;
+    height: auto;
+
+}
+
+.tarjeta-info h1 {
+    margin-top: 30px;
+    line-height: 0px;
+    font-family: 'Barlow Semi Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 1em;
+}
+
+div.cboxElement {
+    padding: 10px 40px!important;
+}
+
 /*~~~~~ Footer ~~~~~*/
 
 footer.site-footer {
@@ -317,6 +421,7 @@ footer.site-footer {
     padding-top: 20px;
     margin-top: 10px;
     font-family: 'Barlow', sans-serif;
+    font-size: 1em;
     color: #333333;
     box-shadow: 0px 0px 20px lightgray;   
 }
@@ -357,8 +462,8 @@ footer.site-footer img.itz {
     footer .footer-logo {
         float: left;
         width: 20%;
-		margin-top: 25px;
-		text-align: right;
+        margin-top: 25px;
+        text-align: right;
     }
 
     footer.site-footer img.itz {
@@ -385,71 +490,7 @@ footer .copyright p span {
     font-weight: 600;
 }
 
-/*~~~~~ Contenido principal ~~~~~*/
 
-.main h2 {
-    font-family: 'Barlow Semi Condensed', sans-serif;
-    font-weight: 600;
-    font-size: 0.8em;
-    text-transform: uppercase;
-    margin-bottom: 10px;
-    color: #808080;
-}
-
-.spinoff {
-    background-color: #FFFFFF;
-    padding: 5px 30px;
-    border-radius: 20px;
-    box-shadow: 0px 0px 20px lightgray;
-    margin: 20px 0;
-}
-
-.spinoff p.nombre {
-    font-family: 'Barlow Semi Condensed', sans-serif;
-    font-weight: 600;
-    font-size: 2.4em;
-    line-height: 10px;
-}
-
-.spinoff p.giro {
-    font-family: 'Barlow Semi Condensed', sans-serif;
-    font-weight: 600;
-    font-size: 1em;
-    text-transform: uppercase;
-    margin-top: -20px;
-}
-
-.spinoff p.descripcion,
-.spinoff p.servicios,
-.spinoff p.proyectos,
-.spinoff p.integrantes {
-    font-family: 'Barlow', sans-serif;
-    font-weight: 500;
-    font-size: 1em;
-}
-
-.spinoff iframe.video {
-    max-width: 100%;
-    height: auto;
-
-}
-
-.spinoff h1 {
-    margin-top: 30px;
-    line-height: 0px;
-    font-family: 'Barlow Semi Condensed', sans-serif;
-    font-weight: 600;
-    font-size: 1em;
-}
-
-.spinoff p.email,
-.spinoff p.telefono {
-    font-family: 'Barlow Semi Condensed', sans-serif;
-    font-weight: 600;
-    font-size: 1em;
-    /*text-transform: uppercase;*/
-    margin-top: -10px;
-}
 
 
 

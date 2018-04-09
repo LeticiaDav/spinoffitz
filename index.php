@@ -80,59 +80,12 @@
 					}
 					?>
 
-					<div class="spinoff">
-						<?php while($spinoffs = $resultado->fetch_assoc()) { ?>
-						<p class="nombre">
-							<?php echo $spinoffs['nombreSpinoff']; ?>	
-						</p>
-						<p class="giro">
-							<?php echo $spinoffs['giroSpinoff']; ?>
-						</p>
-						<hr>
-						<p class="descripcion">
-							<?php echo $spinoffs['descripcionSpinoff']; ?>
-						</p>
-						<h1>Servicios</h1>
-						<p class="servicios">
-							<?php echo str_replace("\n", "<br>", $spinoffs['serviciosSpinoff']); ?>
-						</p>
-						<h1>Proyectos</h1>
-						<p class="proyectos">
-							<?php echo str_replace("\n", "<br>", $spinoffs['proyectosSpinoff']); ?>
-						</p>
-						<h1>Integrantes</h1>
-						<p class="integrantes">
-							<?php echo str_replace("\n", "<br>", $spinoffs['integrantesSpinoff']); ?>
-						</p>
+					
 
-						<!-- video -->
 
-						<h1>Video</h1>
-						<iframe class="video" src="<?php echo $spinoffs['videoSpinoff'] ?>" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
-						<!-- fin de video -->
-						<hr>
-						<p class="email">
-							<?php echo $spinoffs['emailSpinoff']; ?>
-						</p>
-						<p class="telefono">
-							<?php echo $spinoffs['telefonoSpinoff']; ?>
-						</p>
 
-						<?php } ?>
-
-						<?php  
-						// El script automáticamente liberará el resultado y cerrará la conexión a MySQL
-						$resultado->free();
-						$conn->close();
-						?>
-					</div>
-
-					<!-- Otro spin-off -->
-					<div class="spinoff">
-						<p class="nombre">Más proximamente...</p>
-					</div>
-
+					
 
 				</section>
 			</div>
