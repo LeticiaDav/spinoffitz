@@ -439,7 +439,7 @@ footer.site-footer p {
 }
 
 footer .footer-info {
-	margin-bottom: 20px;
+	/*margin-bottom: 20px;*/
 }
 
 footer .footer-logo {
@@ -455,19 +455,24 @@ footer .footer-logo {
 }
 
 footer.site-footer img.itz {
-	width: 80px;
+	/*width: 80px;*/
 }
 
 @media only screen and (min-width: 768px) {
     footer .footer-logo {
         float: left;
         width: 20%;
-        margin-top: 25px;
+       /* margin-top: 25px;*/
         text-align: right;
     }
 
     footer.site-footer img.itz {
-    	width: 100px;
+    	height: 80px;
+    }
+
+    footer.site-footer img.spo {
+        height: 70px;
+        padding-top: 10px;
     }
 }
 

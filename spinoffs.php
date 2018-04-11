@@ -167,8 +167,7 @@
 		<footer class="site-footer">
 			<div class="contenedor clearfix">
 				<div class="footer-info">
-					<h3>Sobre Spin-Off ITZ</h3>
-					<p>Un spin-off o derivado es un término anglosajón que se refiere a un proyecto nacido como extensión de otro anterior, o más aún de una empresa nacida a partir de otra mediante la separación de una división subsidiaria o departamento de la empresa para convertirse en una empresa por sí misma.</p>
+					<img class="spo" src="img/logo_azul_chico.png" class="logo" alt="Logo de Spin-Off ITZ">
 				</div>
 				<div class="footer-logo">
 					<a href="http://mapaches3.itz.edu.mx/itz_rg/" target="_blank">
