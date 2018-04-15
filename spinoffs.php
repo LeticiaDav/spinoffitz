@@ -9,13 +9,13 @@
 
         <link rel="manifest" href="site.webmanifest">
         <link rel="apple-touch-icon" href="icon.png">
-        <!-- Place favicon.ico in the root directory -->
+        <link rel="shortcut icon" href="favicon.ico">
 
         <link rel="stylesheet" href="css/normalize.css">
         <link rel="stylesheet" type="text/css" href="css/estilos.css">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       	rel="stylesheet">
-      	<link href="https://fonts.googleapis.com/css?family=Abel|Hind|Roboto|Roboto+Condensed|Rajdhani:300,400,500,600,700|Khand:400,500,600,700|Barlow:100,100i,200,200i,300,300i,400,400i,500i,600,600i,700,700i,800,800i,900,900i|Barlow+Semi+Condensed:100,100i,200,200i,300,300i,400,400i,500i,600,600i,700,700i,800,800i,900,900i|Barlow+Condensed:100,100i,200,200i,300,300i,400,400i,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+      	<link href="https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed:100,100i,200,200i,300,300i,400,400i,500i,600,600i,700,700i,800,800i,900,900i|Barlow+Condensed:100,100i,200,200i,300,300i,400,400i,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
     	<link rel="stylesheet" href="css/colorbox.css">
     	<link rel="stylesheet" href="css/main.css">
     </head>
