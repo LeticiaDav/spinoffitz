@@ -4,12 +4,14 @@
 		<div class="clearfix">
 			<div class="main">
 				<section class="contenedor">
-					<h2>Spin-offs del ITZ</h2>
+					<h2>Eventos</h2>
 					<?php 
 					try {
 						require_once('includes/funciones/bd_conexion.php');
-						$sql = "SELECT idSpinoff, nombreSpinoff, giroSpinoff, descripcionSpinoff, serviciosSpinoff, proyectosSpinoff, integrantesSpinoff, emailSpinoff, telefonoSpinoff, imagenSpinoff, videoSpinoff "; 
-						$sql .= "FROM spinoff ";
+						$sql = "SELECT * "; 
+						$sql .= "FROM `evento` ";
+						$sql .= "GROUP BY `tituloEvento` ";
+						$sql .= "ORDER BY `inicioEvento` DESC;";
 						if (!$resultado = $conn->query($sql)) {
 							echo "Lo sentimos, este sitio web está experimentando problemas.";
 							 // De nuevo, no hacer esto en un sitio público
@@ -26,67 +28,46 @@
 					?>
 
 					
+					
+
 					<section class="spinoffs_contenedor">
-						<?php while($spinoffs = $resultado->fetch_assoc()) { ?>
-							<a class="spinoff-info" href="#spinoff<?php echo $spinoffs['idSpinoff']; ?>">
+						<?php while($eventos = $resultado->fetch_assoc()) { ?>
+							<a class="evento-info" href="#evento<?php echo $eventos['idEvento']; ?>">
 								<div class="tarjeta">
 									<div class="tarjeta-info">
-											<!-- Nombre -->
-											<p class="nombre">
-												<?php echo $spinoffs['nombreSpinoff']; ?>	
-											</p>
+										<!-- Nombre -->
+										<p class="nombre">
+											<?php echo $eventos['tituloEvento']; ?>	
+										</p>
+										<p class="tarjeta-fecha">
+											<?php echo $eventos['inicioEvento']; ?> ~ <?php echo $eventos['finEvento']; ?> 
+										</p>
 									</div>
 								</div>
 							</a>
 							<div style="display: none;">
-								<div class="spinoff-info" id="spinoff<?php echo $spinoffs['idSpinoff']; ?>">
+								<div class="evento-info" id="evento<?php echo $eventos['idEvento']; ?>">
 									<div class="tarjeta-info">
-										<!-- Logo -->
-										<div style="text-align: center;">
-											<img style="max-width: 250px; max-height: 250px;" src="img/spinoffs/<?php echo $spinoffs['imagenSpinoff']; ?>" alt="">
-										</div>
 										<!-- Nombre -->
 										<p class="nombre">
-											<?php echo $spinoffs['nombreSpinoff']; ?>	
+											<?php echo $eventos['tituloEvento']; ?>	
 										</p>
 										<!-- Giro -->
 										<p class="giro">
-											<?php echo $spinoffs['giroSpinoff']; ?>
+											<?php echo $eventos['inicioEvento']; ?> ~ <?php echo $eventos['finEvento']; ?><br>
+											<?php echo $eventos['lugarEvento']; ?>
 										</p>
 										<hr>
 										<!-- Descripcion -->
-										<h1>Descripción</h1>
 										<p class="descripcion">
-											<?php echo $spinoffs['descripcionSpinoff']; ?>
+											<?php echo $eventos['cuerpoEvento']; ?>
 										</p>
-										<!-- Servicios -->
-										<h1>Servicios</h1>
-										<p class="servicios">
-											<?php echo str_replace("\n", "<br>", $spinoffs['serviciosSpinoff']); ?>
-										</p>
-										<!-- Proyectos -->
-										<h1>Proyectos</h1>
-										<p class="proyectos">
-											<?php echo str_replace("\n", "<br>", $spinoffs['proyectosSpinoff']); ?>
-										</p>
-										<!-- Integrantes -->
-										<h1>Integrantes</h1>
-										<p class="integrantes">
-											<?php echo str_replace("\n", "<br>", $spinoffs['integrantesSpinoff']); ?>
-										</p>
-										<!-- Video -->
-										<?php if ($spinoffs['videoSpinoff']==null) { ?>
-										<?php } else { ?>	
-											<h1>Video</h1>
-											<iframe class="video" src="<?php echo $spinoffs['videoSpinoff'] ?>" frameborder="0" allowfullscreen></iframe>
-										<?php } ?>
 										<hr>
 										<!-- Email -->
-										<p class="email"><span>Email: </span><?php echo $spinoffs['emailSpinoff']; ?>
+										<p class="email">
+											<span>Contacto: </span><?php echo $eventos['contactoEvento']; ?>
 										</p>
-										<!-- Telefono -->
-										<p class="telefono"><span>Teléfono: </span><?php echo $spinoffs['telefonoSpinoff']; ?>
-										</p>
+
 									</div>
 								</div>
 							</div>

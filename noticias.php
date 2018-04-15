@@ -4,12 +4,14 @@
 		<div class="clearfix">
 			<div class="main">
 				<section class="contenedor">
-					<h2>Spin-offs del ITZ</h2>
+					<h2>Noticias</h2>
 					<?php 
 					try {
 						require_once('includes/funciones/bd_conexion.php');
-						$sql = "SELECT idSpinoff, nombreSpinoff, giroSpinoff, descripcionSpinoff, serviciosSpinoff, proyectosSpinoff, integrantesSpinoff, emailSpinoff, telefonoSpinoff, imagenSpinoff, videoSpinoff "; 
-						$sql .= "FROM spinoff ";
+						$sql = "SELECT * "; 
+						$sql .= "FROM `noticia` ";
+						$sql .= "GROUP BY `tituloNoticia` ";
+						$sql .= "ORDER BY `fechaNoticia` DESC;";
 						if (!$resultado = $conn->query($sql)) {
 							echo "Lo sentimos, este sitio web está experimentando problemas.";
 							 // De nuevo, no hacer esto en un sitio público
@@ -26,66 +28,42 @@
 					?>
 
 					
+					
+
 					<section class="spinoffs_contenedor">
-						<?php while($spinoffs = $resultado->fetch_assoc()) { ?>
-							<a class="spinoff-info" href="#spinoff<?php echo $spinoffs['idSpinoff']; ?>">
+						<?php while($noticias = $resultado->fetch_assoc()) { ?>
+							<a class="noticia-info" href="#noticia<?php echo $noticias['idNoticia']; ?>">
 								<div class="tarjeta">
 									<div class="tarjeta-info">
-											<!-- Nombre -->
-											<p class="nombre">
-												<?php echo $spinoffs['nombreSpinoff']; ?>	
-											</p>
+										<!-- Nombre -->
+										<p class="nombre">
+											<?php echo $noticias['tituloNoticia']; ?>	
+										</p>
+										<p class="tarjeta-fecha">
+											<?php echo $noticias['fechaNoticia']; ?>
+										</p>
 									</div>
 								</div>
 							</a>
 							<div style="display: none;">
-								<div class="spinoff-info" id="spinoff<?php echo $spinoffs['idSpinoff']; ?>">
+								<div class="noticia-info" id="noticia<?php echo $noticias['idNoticia']; ?>">
 									<div class="tarjeta-info">
-										<!-- Logo -->
-										<div style="text-align: center;">
-											<img style="max-width: 250px; max-height: 250px;" src="img/spinoffs/<?php echo $spinoffs['imagenSpinoff']; ?>" alt="">
-										</div>
 										<!-- Nombre -->
 										<p class="nombre">
-											<?php echo $spinoffs['nombreSpinoff']; ?>	
+											<?php echo $noticias['tituloNoticia']; ?>	
 										</p>
 										<!-- Giro -->
 										<p class="giro">
-											<?php echo $spinoffs['giroSpinoff']; ?>
+											<?php echo $noticias['fechaNoticia']; ?>
 										</p>
 										<hr>
 										<!-- Descripcion -->
-										<h1>Descripción</h1>
 										<p class="descripcion">
-											<?php echo $spinoffs['descripcionSpinoff']; ?>
+											<?php echo $noticias['cuerpoNoticia']; ?>
 										</p>
-										<!-- Servicios -->
-										<h1>Servicios</h1>
-										<p class="servicios">
-											<?php echo str_replace("\n", "<br>", $spinoffs['serviciosSpinoff']); ?>
-										</p>
-										<!-- Proyectos -->
-										<h1>Proyectos</h1>
-										<p class="proyectos">
-											<?php echo str_replace("\n", "<br>", $spinoffs['proyectosSpinoff']); ?>
-										</p>
-										<!-- Integrantes -->
-										<h1>Integrantes</h1>
-										<p class="integrantes">
-											<?php echo str_replace("\n", "<br>", $spinoffs['integrantesSpinoff']); ?>
-										</p>
-										<!-- Video -->
-										<?php if ($spinoffs['videoSpinoff']==null) { ?>
-										<?php } else { ?>	
-											<h1>Video</h1>
-											<iframe class="video" src="<?php echo $spinoffs['videoSpinoff'] ?>" frameborder="0" allowfullscreen></iframe>
-										<?php } ?>
 										<hr>
 										<!-- Email -->
-										<p class="email"><span>Email: </span><?php echo $spinoffs['emailSpinoff']; ?>
-										</p>
-										<!-- Telefono -->
-										<p class="telefono"><span>Teléfono: </span><?php echo $spinoffs['telefonoSpinoff']; ?>
+										<p class="email"><span>Fuente: </span><?php echo $noticias['fuenteNoticia']; ?>
 										</p>
 									</div>
 								</div>

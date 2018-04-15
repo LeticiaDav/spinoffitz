@@ -139,7 +139,8 @@ body {
 /*~~~~~ Hero ~~~~~*/
 
 div.hero {
-    background-image: url(../img/hero.png);
+    /*background-image: url(../img/hero.png);*/
+    background-color: #004D57;
     height: 35vh;
     background-position: top center;
     background-size: cover;
@@ -148,7 +149,7 @@ div.hero {
 
 @media only screen and (min-width: 480px) {
     div.hero {
-        height: 75vh;
+        height: 100vh;
     }
 }
 
@@ -221,7 +222,7 @@ nav.navegacion-principal a {
     color: #000000;
     font-size: 1em;
     text-decoration: none;
-    font-family: 'Barlow Semi Condensed', sans-serif;
+    font-family: 'Barlow Condensed', sans-serif;
     font-weight: 600;
     line-height: 60px;
     padding: 5px 10px;
@@ -255,6 +256,11 @@ nav.navegacion-principal a {
 }
 
 nav.navegacion-principal a.activo {
+    background-color: #13F485;
+    color: #004D57;
+}
+
+body.spinoffs nav.navegacion-principal a.activo {
     background-color: #13F485;
     color: #004D57;
 }
@@ -356,7 +362,22 @@ a.spinoff-info div.tarjeta p {
     color: black;
 }
 
-a.spinoff-info div.tarjeta:hover {
+a.noticia-info div.tarjeta p,
+a.evento-info div.tarjeta p {
+    font-size: 1.2em;
+    color: black;
+}
+
+a.noticia-info div.tarjeta p.tarjeta-fecha,
+a.evento-info div.tarjeta p.tarjeta-fecha {
+    font-family: 'Barlow Semi Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 0.8em;
+}
+
+a.spinoff-info div.tarjeta:hover,
+a.noticia-info div.tarjeta:hover,
+a.noticia-info div.tarjeta:hover {
     background-color: #FCFCFC;
     border-bottom: 2px solid #13F485;
     margin-bottom: -2px;
@@ -366,7 +387,6 @@ a.spinoff-info div.tarjeta:hover {
     font-family: 'Barlow Semi Condensed', sans-serif;
     font-weight: 600;
     font-size: 2.2em;
-    line-height: 10px;
 }
 
 .tarjeta-info p.giro {
@@ -455,7 +475,7 @@ footer .footer-logo {
 }
 
 footer.site-footer img.itz {
-	/*width: 80px;*/
+	width: 80px;
 }
 
 @media only screen and (min-width: 768px) {
@@ -481,20 +501,15 @@ footer.site-footer .copyright {
     color: #13F485;
 }
 
-footer.site-footer .copyright p {
+footer.site-footer .copyright .contenedor p {
     padding: 10px 0;
     margin: 20px 0 0 0;
     text-align: center;
     font-family: 'Barlow Semi Condensed', sans-serif;
-    font-weight: 300;
+    font-weight: 400;
+    font-size: 0.8em;
     text-transform: uppercase;
 }
-
-footer .copyright p span {
-	font-family: 'Barlow Semi Condensed', sans-serif;
-    font-weight: 600;
-}
-
 
 
 

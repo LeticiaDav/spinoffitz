@@ -1,20 +1,32 @@
 <?php include_once 'includes/templates/header.php'; ?>
+		
+		<!-- Contenido principal -->
+		<div class="clearfix">
+			<div class="main">
+				<section class="contenedor">
+					<h2>Buscar</h2>
 
-		<!-- Hero -->
-		<div class="site-header">
-			<div class="hero">
-				<div class="contenido-header">
-					<a href="http://mapaches3.itz.edu.mx/itz_rg/" target="_blank">
-						<img src="img/itz_alt.png" class="itz" alt="Logo del ITZ">
-					</a>
-					<br><br>
-					<img src="img/logo_blanco.png" class="logo" alt="Logo de Spin-Off ITZ">
-					<br><br><i class="material-icons">keyboard_arrow_down</i>
-				</div>
+					<section class="spinoffs_contenedor">
+						
+								<div class="tarjeta">
+									<div class="tarjeta-info">
+										
+										<p class="nombre">
+											Buscar	
+										</p><hr>
+										<input type="text" name="">
+										<br><br>
+									</div>
+								</div>
+							
+					</section>
+
+				</section>
+			</div>
+			<div class="derecho">
 			</div>
 		</div>
-		
-		
+
  		<!-- Footer -->
 		<footer class="site-footer">
 			<div class="contenedor clearfix">
@@ -31,7 +43,7 @@
 				<div class="contenedor">
 					<p>
 						<!-- <a href="https://icons8.com">Iconos por <span>Icons8</span></a><br> -->
-						Todos los derechos reservados <span>~ Worktecs 2018</span>
+						Todos los derechos reservados ~ Worktecs 2018
 					</p>
 				</div>
 			</div>
@@ -46,6 +58,7 @@
         <script src="js/plugins.js"></script>
         <script src="js/main.js"></script>
         <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+        <script src="js/jquery.colorbox-min.js"></script>
 
         <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
         <script>
