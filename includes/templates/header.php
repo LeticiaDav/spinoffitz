@@ -1,38 +1,29 @@
 <!doctype html>
 <html class="no-js" lang="">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Spin-Off ITZ</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<title>Spin-Off ITZ</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="manifest" href="site.webmanifest">
+	<link rel="apple-touch-icon" href="icon.png">
+	<link rel="shortcut icon" href="favicon.ico">
+	<!-- normalize -->
+	<link rel="stylesheet" href="css/normalize.css">
+	<!-- boostrap -->
+	<link rel="stylesheet" href="css/bootstrap.min.css">
 
-        <link rel="manifest" href="site.webmanifest">
-        <link rel="apple-touch-icon" href="icon.png">
-        <link rel="shortcut icon" href="favicon.ico">
+	<?php 
+	$archivo = basename($_SERVER['PHP_SELF']);
+	$pagina = str_replace(".php", "", $archivo);
+	?>
 
-        <link rel="stylesheet" href="css/normalize.css">
-        <link rel="stylesheet" type="text/css" href="css/estilos.css">
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      	rel="stylesheet">
-      	<link href="https://fonts.googleapis.com/css?family=Barlow+Condensed:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i|Barlow:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i|Barlow+Semi+Condensed:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+	<link rel="stylesheet" href="css/main.css">
+</head>
+<body class="<?php echo $pagina ?>">
 
-      	<?php 
-			$archivo = basename($_SERVER['PHP_SELF']);
-			$pagina = str_replace(".php", "", $archivo);
-			// if ($pagina == 'invitados' || $pagina == 'index') {
-			// 	echo '<link rel="stylesheet" href="css/colorbox.css">';
-			// } else if($pagina == 'conferencia') {
-			// 	echo '<link rel="stylesheet" href="css/lightbox.css">';
-			// }
-		?>
-
-    	<link rel="stylesheet" href="css/colorbox.css">
-    	<link rel="stylesheet" href="css/main.css">
-    </head>
-    <body class="<?php echo $pagina ?>">
-        
-        <!-- Hero -->
+	<!-- Hero -->
 		<!-- <div class="site-header">
 			<div class="hero">
 				<div class="contenido-header">
@@ -47,7 +38,37 @@
 		</div> -->
 
 		<!-- Barra -->
-		<div class="barra" id="barra">
+		<header>
+			<nav class="navbar navbar-expand-md navbar-light fixed-top container">
+				<a class="navbar-brand" href="index.php">
+					<img src="img/logo_simple.png" alt="Logo de Spin-Off ITZ">
+				</a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarText">
+					<ul class="navbar-nav">
+						<li class="nav-item p-2">
+							<a class="nav-link" href="index.php">Inicio</a>
+						</li>
+						<li class="nav-item p-2">
+							<a class="nav-link" href="spinoffs.php">Spin-Offs</a>
+						</li>
+						<li class="nav-item p-2">
+							<a class="nav-link" href="noticias.php">Noticias</a>
+						</li>
+						<li class="nav-item p-2">
+							<a class="nav-link" href="eventos.php">Eventos</a>
+						</li>
+						<li class="nav-item p-2">
+							<a class="nav-link" href="buscar.php">Buscar</a>
+						</li>
+					</ul>
+				</div>
+			</nav>
+		</header>
+
+		<!-- <div class="barra" id="barra">
 			<div class="contenedor clearfix">
 				<div class="logo">
 					<img src="img/logo_simple.png" alt="Logo de Spin-Off ITZ">
@@ -65,4 +86,4 @@
 					<a href="buscar.php">Buscar</a>
 				</nav>
 			</div>
-		</div>
+		</div> -->

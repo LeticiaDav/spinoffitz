@@ -1,129 +1,87 @@
-<?php include_once 'includes/templates/header.php'; ?>
-		
-		<!-- Contenido principal -->
-		<div class="clearfix">
-			<div class="main">
-				<section class="contenedor">
-					<h2>Eventos</h2>
-					<?php 
-					try {
-						require_once('includes/funciones/bd_conexion.php');
-						$sql = "SELECT * "; 
-						$sql .= "FROM `evento` ";
-						$sql .= "GROUP BY `tituloEvento` ";
-						$sql .= "ORDER BY `inicioEvento` DESC;";
-						if (!$resultado = $conn->query($sql)) {
-							echo "Lo sentimos, este sitio web está experimentando problemas.";
-							 // De nuevo, no hacer esto en un sitio público
-							echo "Error: La ejecución de la consulta falló debido a: \n";
-							echo "Query: " . $sql . "\n";
-							echo "Errno: " . $mysqli->errno . "\n";
-							echo "Error: " . $mysqli->error . "\n";
-							exit;
-						}
-						$resultado = $conn->query($sql);
-					} catch(Exception $e) {
-						$error = $e->getMessaege();
-					}
-					?>
+<?php 
+try {
+	require_once('includes/funciones/bd_conexion.php');
+	$sql = "SELECT * FROM evento GROUP BY tituloEvento ORDER BY inicioEvento DESC;";
+	if (!$result = $conn->query($sql)) {
+		echo "Lo sentimos, este sitio web está experimentando problemas.";
+		exit;
+	}
+	$result = $conn->query($sql);
+	$conn->close();
+} catch(Exception $e) {
+	$error = $e->getMessaege();
+}
+?>
 
-					
-					
+<?php include_once('includes/templates/header.php'); ?>
 
-					<section class="spinoffs_contenedor">
-						<?php while($eventos = $resultado->fetch_assoc()) { ?>
-							<a class="evento-info" href="#evento<?php echo $eventos['idEvento']; ?>">
-								<div class="tarjeta">
-									<div class="tarjeta-info">
-										<!-- Nombre -->
-										<p class="nombre">
-											<?php echo $eventos['tituloEvento']; ?>	
-										</p>
-										<p class="tarjeta-fecha">
-											<?php echo $eventos['inicioEvento']; ?> ~ <?php echo $eventos['finEvento']; ?> 
-										</p>
-									</div>
-								</div>
-							</a>
-							<div style="display: none;">
-								<div class="evento-info" id="evento<?php echo $eventos['idEvento']; ?>">
-									<div class="tarjeta-info">
-										<!-- Nombre -->
-										<p class="nombre">
-											<?php echo $eventos['tituloEvento']; ?>	
-										</p>
-										<!-- Giro -->
-										<p class="giro">
-											<?php echo $eventos['inicioEvento']; ?> ~ <?php echo $eventos['finEvento']; ?><br>
-											<?php echo $eventos['lugarEvento']; ?>
-										</p>
-										<hr>
-										<!-- Descripcion -->
-										<p class="descripcion">
-											<?php echo $eventos['cuerpoEvento']; ?>
-										</p>
-										<hr>
-										<!-- Email -->
-										<p class="email">
-											<span>Contacto: </span><?php echo $eventos['contactoEvento']; ?>
-										</p>
+<main class="container">
 
-									</div>
-								</div>
-							</div>
-						<?php } ?>
-					</section>
+	<h2 class="text-light font-weight-light title">Eventos</h2>
 
-						<?php  
-						// El script automáticamente liberará el resultado y cerrará la conexión a MySQL
-						$resultado->free();
-						$conn->close();
-						?>
-				
-				</section>
-			</div>
-			<div class="derecho">
-			</div>
-		</div>
-
- 		<!-- Footer -->
-		<footer class="site-footer">
-			<div class="contenedor clearfix">
-				<div class="footer-info">
-					<img class="spo" src="img/logo_azul_chico.png" class="logo" alt="Logo de Spin-Off ITZ">
-				</div>
-				<div class="footer-logo">
-					<a href="http://mapaches3.itz.edu.mx/itz_rg/" target="_blank">
-						<img src="img/itz.png" class="itz" alt="Logo del ITZ">
-					</a>
+	<div class="row">
+		<?php while($eventos = $result->fetch_assoc()): ?>
+			<?php 
+			setlocale(LC_TIME, 'es_ES.UTF-8');
+			setlocale(LC_TIME, 'spanish');
+			$inicioEvento = utf8_encode(strftime("%A, %d de %B del %Y", strtotime($eventos['inicioEvento'])));
+			$finEvento = utf8_encode(strftime("%A, %d de %B del %Y", strtotime($eventos['finEvento'])));
+			?>
+			<div class="col-sm-6">
+				<div class="card">
+					<div class="image d-flex justify-content-center align-items-center">
+						<img class="image" src="img/eventos/<?php echo $eventos["imagenEvento"]; ?>" alt="Card image cap">
+					</div>
+					<div class="card-body">
+						<h5 class="card-title"><?php echo $eventos['tituloEvento'];?></h5>
+						<p class="card-text text-truncate"><?php echo $inicioEvento; ?></p>
+						<button type="button" class="btn btn-outline-secondary btn-sm" data-toggle="modal" data-target="#<?php echo $eventos['idEvento']; ?>">
+							Ver información
+						</button>
+					</div>
 				</div>
 			</div>
-			<div class="copyright">
-				<div class="contenedor">
-					<p>
-						<!-- <a href="https://icons8.com">Iconos por <span>Icons8</span></a><br> -->
-						Todos los derechos reservados ~ Worktecs 2018
-					</p>
+			<!-- modal -->
+			<div class="modal fade" id="<?php echo $eventos['idEvento']; ?>" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
+				<div class="modal-dialog modal-lg" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLabel"><?php echo $eventos['tituloEvento']; ?></h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<ul class="list-group">
+								<li class="list-group-item">
+									<h6>Fechas</h6>
+									<p>Inicia: <?php echo $inicioEvento; ?></p>
+									<p>Termina: <?php echo $finEvento; ?></p>
+								</li>
+								<li class="list-group-item">
+									<h6>Evento</h6>
+									<p><?php echo str_replace("\n", "<br>", $eventos['cuerpoEvento']); ?></p>
+								</li>
+								<li class="list-group-item">
+									<h6>Lugar</h6>
+									<p><?php echo $eventos['lugarEvento']; ?></p>
+								</li>
+								<li class="list-group-item">
+									<h6>Contacto</h6>
+									<p><?php echo $eventos['contactoEvento']; ?></p>
+								</li>
+							</ul>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cerrar</button>
+						</div>
+					</div>
 				</div>
 			</div>
-			
-		</footer>
+		<?php endwhile; ?>
+		<?php $result->free(); ?>
+	</div>
 
+</main>
 
-        <!-- Archivos JavaScript -->
-        <script src="js/vendor/modernizr-3.5.0.min.js"></script>
-        <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-        <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.2.1.min.js"><\/script>')</script>
-        <script src="js/plugins.js"></script>
-        <script src="js/main.js"></script>
-        <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
-        <script src="js/jquery.colorbox-min.js"></script>
-
-        <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
-        <script>
-            window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;
-            ga('create','UA-XXXXX-Y','auto');ga('send','pageview')
-        </script>
-        <script src="https://www.google-analytics.com/analytics.js" async defer></script>
-    </body>
-</html>
+<?php include_once('includes/templates/footer.php'); ?>

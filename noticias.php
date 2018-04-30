@@ -1,126 +1,92 @@
-<?php include_once 'includes/templates/header.php'; ?>
-		
-		<!-- Contenido principal -->
-		<div class="clearfix">
-			<div class="main">
-				<section class="contenedor">
-					<h2>Noticias</h2>
-					<?php 
-					try {
-						require_once('includes/funciones/bd_conexion.php');
-						$sql = "SELECT * "; 
-						$sql .= "FROM `noticia` ";
-						$sql .= "GROUP BY `tituloNoticia` ";
-						$sql .= "ORDER BY `fechaNoticia` DESC;";
-						if (!$resultado = $conn->query($sql)) {
-							echo "Lo sentimos, este sitio web está experimentando problemas.";
-							 // De nuevo, no hacer esto en un sitio público
-							echo "Error: La ejecución de la consulta falló debido a: \n";
-							echo "Query: " . $sql . "\n";
-							echo "Errno: " . $mysqli->errno . "\n";
-							echo "Error: " . $mysqli->error . "\n";
-							exit;
-						}
-						$resultado = $conn->query($sql);
-					} catch(Exception $e) {
-						$error = $e->getMessaege();
-					}
-					?>
+<?php
+try {
+	require_once('includes/funciones/bd_conexion.php');
+	// $sql = "SELECT * FROM noticia GROUP BY tituloNoticia ORDER BY fechaNoticia DESC LIMIT 6;";
+	$sql = "SELECT * FROM noticia GROUP BY tituloNoticia ORDER BY fechaNoticia DESC;";
+	if (!$result = $conn->query($sql)) {
+		echo "Lo sentimos, este sitio esta experimentando problemas.";
+		exit();
+	}
+	$result = $conn->query($sql);
+	$conn->close();
+} catch(Exception $e) {
+	$error = $e->getMessaege();
+}
+?>
 
-					
-					
+<?php include_once('includes/templates/header.php'); ?>
 
-					<section class="spinoffs_contenedor">
-						<?php while($noticias = $resultado->fetch_assoc()) { ?>
-							<a class="noticia-info" href="#noticia<?php echo $noticias['idNoticia']; ?>">
-								<div class="tarjeta">
-									<div class="tarjeta-info">
-										<!-- Nombre -->
-										<p class="nombre">
-											<?php echo $noticias['tituloNoticia']; ?>	
-										</p>
-										<p class="tarjeta-fecha">
-											<?php echo $noticias['fechaNoticia']; ?>
-										</p>
-									</div>
-								</div>
-							</a>
-							<div style="display: none;">
-								<div class="noticia-info" id="noticia<?php echo $noticias['idNoticia']; ?>">
-									<div class="tarjeta-info">
-										<!-- Nombre -->
-										<p class="nombre">
-											<?php echo $noticias['tituloNoticia']; ?>	
-										</p>
-										<!-- Giro -->
-										<p class="giro">
-											<?php echo $noticias['fechaNoticia']; ?>
-										</p>
-										<hr>
-										<!-- Descripcion -->
-										<p class="descripcion">
-											<?php echo $noticias['cuerpoNoticia']; ?>
-										</p>
-										<hr>
-										<!-- Email -->
-										<p class="email"><span>Fuente: </span><?php echo $noticias['fuenteNoticia']; ?>
-										</p>
-									</div>
-								</div>
-							</div>
-						<?php } ?>
-					</section>
+<main class="container">
 
-						<?php  
-						// El script automáticamente liberará el resultado y cerrará la conexión a MySQL
-						$resultado->free();
-						$conn->close();
-						?>
-				
-				</section>
-			</div>
-			<div class="derecho">
-			</div>
-		</div>
+	<h2 class="text-light font-weight-light title">Noticias</h2>
 
- 		<!-- Footer -->
-		<footer class="site-footer">
-			<div class="contenedor clearfix">
-				<div class="footer-info">
-					<img class="spo" src="img/logo_azul_chico.png" class="logo" alt="Logo de Spin-Off ITZ">
-				</div>
-				<div class="footer-logo">
-					<a href="http://mapaches3.itz.edu.mx/itz_rg/" target="_blank">
-						<img src="img/itz.png" class="itz" alt="Logo del ITZ">
-					</a>
+	<div class="row">
+
+		<?php while($noticias = $result->fetch_assoc()): ?>
+			<?php 
+			setlocale(LC_TIME, 'es_ES.UTF-8');
+			setlocale(LC_TIME, 'spanish');
+			$fechaNoticia = utf8_encode(strftime("%A, %d de %B del %Y", strtotime($noticias['fechaNoticia'])));
+			?>
+			<div class="col-sm-4">
+				<div class="card">
+					<?php if($noticias['imagenNoticia'] == null): ?>
+					<?php else: ?>
+						<div class="image d-flex justify-content-center align-items-center">
+							<img class="image" src="img/noticias/<?php echo $noticias["imagenNoticia"]; ?>" alt="Card image cap">
+						</div>
+					<?php endif; ?>
+					<div class="card-body">
+						<h5 class="card-title"><?php echo $noticias['tituloNoticia']; ?></h5>
+						<p class="card-text text-truncate"><?php echo $fechaNoticia; ?></p>
+						<button type="button" class="btn btn-outline-secondary btn-sm" data-toggle="modal" data-target="#<?php echo $noticias['idNoticia']; ?>">
+							Ver información
+						</button>
+					</div>
 				</div>
 			</div>
-			<div class="copyright">
-				<div class="contenedor">
-					<p>
-						<!-- <a href="https://icons8.com">Iconos por <span>Icons8</span></a><br> -->
-						Todos los derechos reservados ~ Worktecs 2018
-					</p>
+			<!-- modal -->
+			<div class="modal fade" id="<?php echo $noticias['idNoticia']; ?>" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
+				<div class="modal-dialog modal-lg" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLabel"><?php echo $noticias['tituloNoticia']; ?></h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<ul class="list-group">
+								<li class="list-group-item">
+									<h6><?php echo $fechaNoticia; ?></h6>
+									<p><?php echo str_replace("\n", "<br>", $noticias['cuerpoNoticia']); ?></p>
+								</li>
+								<li class="list-group-item">
+									<h6>Fuente</h6>
+									<p><?php echo $noticias['fuenteNoticia']; ?></p>
+								</li>
+							</ul>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cerrar</button>
+						</div>
+					</div>
 				</div>
 			</div>
-			
-		</footer>
+		<?php endwhile; ?>
+		<?php $result->free(); ?>
+	</div>
 
+	<!-- <nav aria-label="Page navigation example">
+		<ul class="pagination justify-content-center">
+			<li class="page-item"><a class="page-link" href="#">Previous</a></li>
+			<li class="page-item"><a class="page-link" href="#">1</a></li>
+			<li class="page-item"><a class="page-link" href="#">2</a></li>
+			<li class="page-item"><a class="page-link" href="#">3</a></li>
+			<li class="page-item"><a class="page-link" href="#">Next</a></li>
+		</ul>
+	</nav> -->
 
-        <!-- Archivos JavaScript -->
-        <script src="js/vendor/modernizr-3.5.0.min.js"></script>
-        <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-        <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.2.1.min.js"><\/script>')</script>
-        <script src="js/plugins.js"></script>
-        <script src="js/main.js"></script>
-        <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
-        <script src="js/jquery.colorbox-min.js"></script>
+</main>
 
-        <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
-        <script>
-            window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;
-            ga('create','UA-XXXXX-Y','auto');ga('send','pageview')
-        </script>
-        <script src="https://www.google-analytics.com/analytics.js" async defer></script>
-    </body>
-</html>
+<?php include_once('includes/templates/footer.php'); ?>

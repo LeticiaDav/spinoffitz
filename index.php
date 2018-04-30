@@ -1,57 +1,45 @@
 <?php include_once 'includes/templates/header.php'; ?>
 
-		<!-- Hero -->
-		<div class="site-header">
-			<div class="hero">
-				<div class="contenido-header">
-					<a href="http://mapaches3.itz.edu.mx/itz_rg/" target="_blank">
-						<img src="img/itz_alt.png" class="itz" alt="Logo del ITZ">
-					</a>
-					<br><br>
-					<img src="img/logo_blanco.png" class="logo" alt="Logo de Spin-Off ITZ">
-					<br><br><i class="material-icons">keyboard_arrow_down</i>
-				</div>
-			</div>
+<main class="container d-flex align-items-center">
+
+	<div class="opciones">
+		<div class="index-image">
+			<img src="img/logo_blanco.png" class="logo" alt="Logo de Spin-Off ITZ"><br>
 		</div>
-		
-		
- 		<!-- Footer -->
-		<footer class="site-footer">
-			<div class="contenedor clearfix">
-				<div class="footer-info">
-					<img class="spo" src="img/logo_azul_chico.png" class="logo" alt="Logo de Spin-Off ITZ">
+		<!-- cards -->
+		<div class="card-deck text-light">
+			<div class="card bg-transparent">
+				<div class="card-body">
+					<h5 class="card-title">Spin-Offs</h5>
+					<p class="card-text">Empresas creadas en el laboratorio de desarrollo de software del ITZ.</p>					
 				</div>
-				<div class="footer-logo">
-					<a href="http://mapaches3.itz.edu.mx/itz_rg/" target="_blank">
-						<img src="img/itz.png" class="itz" alt="Logo del ITZ">
-					</a>
+				<div class="card-footer">
+					<a href="spinoffs.php" class="btn btn-light btn-sm">Entrar</a>
 				</div>
 			</div>
-			<div class="copyright">
-				<div class="contenedor">
-					<p>
-						<!-- <a href="https://icons8.com">Iconos por <span>Icons8</span></a><br> -->
-						Todos los derechos reservados <span>~ Worktecs 2018</span>
-					</p>
+			<div class="card bg-transparent">
+				<div class="card-body">
+					<h5 class="card-title">Noticias</h5>
+					<p class="card-text">Últimas noticias de interes para los spin-offs.</p>
+				</div>
+				<div class="card-footer">
+					<a href="noticias.php" class="btn btn-light btn-sm">Entrar</a>
 				</div>
 			</div>
-			
-		</footer>
 
+			<div class="card bg-transparent">
+				<div class="card-body">
+					<h5 class="card-title">Eventos</h5>
+					<p class="card-text">Fechas de eventos para los spin-offs.</p>
+				</div>
+				<div class="card-footer">
+					<a href="eventos.php" class="btn btn-light btn-sm">Entrar</a>
+				</div>
+			</div>
 
-        <!-- Archivos JavaScript -->
-        <script src="js/vendor/modernizr-3.5.0.min.js"></script>
-        <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-        <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.2.1.min.js"><\/script>')</script>
-        <script src="js/plugins.js"></script>
-        <script src="js/main.js"></script>
-        <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+		</div>
+	</div>
 
-        <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
-        <script>
-            window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;
-            ga('create','UA-XXXXX-Y','auto');ga('send','pageview')
-        </script>
-        <script src="https://www.google-analytics.com/analytics.js" async defer></script>
-    </body>
-</html>
+</main>
+
+<?php include_once 'includes/templates/footer.php'; ?>
