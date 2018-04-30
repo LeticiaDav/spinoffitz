@@ -44,17 +44,29 @@
 									<textarea class="form-control" name="servicios_spinoff" id="servicios_spinoff" rows="10" placeholder="Ingresa los servicios"></textarea>
 								</div>
 								<div class="form-group">
-									<label for="proyectos_spinoff">Descripción</label>
+									<label for="proyectos_spinoff">Proyectos</label>
 									<textarea class="form-control" name="proyectos_spinoff" id="proyectos_spinoff" rows="10" placeholder="Ingresa los proyectos"></textarea>
 								</div>
 								<div class="form-group">
-									<label for="integrantes_spinoff">Descripción</label>
+									<label for="integrantes_spinoff">Integrantes</label>
 									<textarea class="form-control" name="integrantes_spinoff" id="integrantes_spinoff" rows="10" placeholder="Ingresa los integrantes"></textarea>
 								</div>
 								<div class="form-group">
 									<label for="imagen_spinoff">Imagen</label>
 									<input type="file" id="imagen_spinoff" name="archivo_imagen">
 									<p class="help-block">Añade la imagen del spin-off.</p>
+								</div>
+								<div class="form-group">
+									<label for="video_spinoff">Enlace de video</label>
+									<input type="text" class="form-control" id="video_spinoff" name="video_spinoff" placeholder="Ingresa el enlace de video">
+								</div>
+								<div class="form-group">
+									<label for="telefono_spinoff">Teléfono</label>
+									<input type="text" class="form-control" id="telefono_spinoff" name="telefono_spinoff" placeholder="Ingresa el teléfono">
+								</div>
+								<div class="form-group">
+									<label for="email_spinoff">Email</label>
+									<input type="text" class="form-control" id="email_spinoff" name="email_spinoff" placeholder="Ingresa el correo electrónico">
 								</div>
 							</div>
 							<!-- /.box-body -->

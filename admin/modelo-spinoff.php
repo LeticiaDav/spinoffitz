@@ -9,10 +9,16 @@ if ($_POST['registro'] == 'nuevo') {
 	// 	'file' => $_FILES
 	// );
 	// die(json_encode($respuesta));
-	$nombre = $_POST['nombre_invitado'];
-	$apellido = $_POST['apellido_invitado'];
-	$biografia = $_POST['biografia_invitado'];
-	$directorio = "../img/invitados/";
+	$nombre = $_POST['nombre_spinoff'];
+	$giro = $_POST['giro_spinoff'];
+	$descripcion = $_POST['descripcion_spinoff'];
+	$servicios = $_POST['servicios_spinoff'];
+	$proyectos = $_POST['proyectos_spinoff'];
+	$integrantes = $_POST['integrantes_spinoff'];
+	$video = $_POST['video_spinoff'];
+	$telefono = $_POST['telefono_spinoff'];
+	$email = $_POST['email_spinoff'];
+	$directorio = "../img/spinoffs/";
 	if (!is_dir($directorio)) {
 		mkdir($directorio, 0755, true); // directorio, permisos, recursivo (mismo permiso a archivos)
 	}
@@ -25,8 +31,8 @@ if ($_POST['registro'] == 'nuevo') {
 		);
 	}
 	try {
-		$stmt = $conn->prepare("INSERT INTO invitados(nombre_invitado, apellido_invitado, descripcion, url_imagen) VALUES (?, ?, ?, ?)");
-		$stmt->bind_param("ssss", $nombre, $apellido, $biografia, $imagen_url);
+		$stmt = $conn->prepare("INSERT INTO spinoff(nombreSpinoff, giroSpinoff, descripcionSpinoff, serviciosSpinoff, proyectosSpinoff, integrantesSpinoff, imagenSpinoff, videoSpinoff, telefonoSpinoff, emailSpinoff) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+		$stmt->bind_param("ssssssssss", $nombre, $giro, $descripcion, $servicios, $proyectos, $integrantes, $imagen_url, $video, $telefono, $email);
 		$stmt->execute();
 		$id_insertado = $stmt->insert_id;
 		if ($stmt->affected_rows) {
@@ -53,11 +59,17 @@ if ($_POST['registro'] == 'nuevo') {
 // ACTUALIZAR
 
 if ($_POST['registro'] == 'actualizar') {
-	$nombre = $_POST['nombre_invitado'];
-	$apellido = $_POST['apellido_invitado'];
-	$biografia = $_POST['biografia_invitado'];
-	$directorio = "../img/invitados/";
-	$id_registro = $_POST['id_registro'];
+	$nombre = $_POST['nombre_spinoff'];
+	$giro = $_POST['giro_spinoff'];
+	$descripcion = $_POST['descripcion_spinoff'];
+	$servicios = $_POST['servicios_spinoff'];
+	$proyectos = $_POST['proyectos_spinoff'];
+	$integrantes = $_POST['integrantes_spinoff'];
+	$video = $_POST['video_spinoff'];
+	$telefono = $_POST['telefono_spinoff'];
+	$email = $_POST['email_spinoff'];
+	$directorio = "../img/spinoffs/";
+	$idActualizar = $_POST['id_registro'];
 	if (!is_dir($directorio)) {
 		mkdir($directorio, 0755, true); // directorio, permisos, recursivo (mismo permiso a archivos)
 	}
@@ -72,17 +84,17 @@ if ($_POST['registro'] == 'actualizar') {
 	try {
 		// con imagen
 		if ($_FILES['archivo_imagen']['size'] > 0) {
-			$stmt = $conn->prepare("UPDATE invitados SET nombre_invitado = ?, apellido_invitado = ?, descripcion = ?, url_imagen = ?, editado = NOW() WHERE invitado_id = ?");
-			$stmt->bind_param("ssssi", $nombre, $apellido, $biografia, $imagen_url, $id_registro);
+			$stmt = $conn->prepare("UPDATE spinoff SET nombreSpinoff = ?, giroSpinoff = ?, descripcionSpinoff = ?, serviciosSpinoff = ?, proyectosSpinoff = ?, integrantesSpinoff = ?, imagenSpinoff = ?, videoSpinoff = ?, telefonoSpinoff = ?, emailSpinoff = ?, editadoSpinoff = NOW() WHERE idSpinoff = ?");
+			$stmt->bind_param("ssssssssssi", $nombre, $giro, $descripcion, $servicios, $proyectos, $integrantes, $imagen_url, $video, $telefono, $email, $idActualizar);
 		} else {
-			$stmt = $conn->prepare("UPDATE invitados SET nombre_invitado = ?, apellido_invitado = ?, descripcion = ?, editado = NOW() WHERE invitado_id = ?");
-			$stmt->bind_param("sssi", $nombre, $apellido, $biografia, $id_registro);
+			$stmt = $conn->prepare("UPDATE spinoff SET nombreSpinoff = ?, giroSpinoff = ?, descripcionSpinoff = ?, serviciosSpinoff = ?, proyectosSpinoff = ?, integrantesSpinoff = ?, videoSpinoff = ?, telefonoSpinoff = ?, emailSpinoff = ?, editadoSpinoff = NOW() WHERE idSpinoff = ?");
+			$stmt->bind_param("sssssssssi", $nombre, $giro, $descripcion, $servicios, $proyectos, $integrantes, $video, $telefono, $email, $idActualizar);
 		}
 		$estado = $stmt->execute();
 		if ($estado == true) {
 			$respuesta = array(
 				'respuesta' => 'exito',
-				'id_actualizado' => $id_registro
+				'id_actualizado' => $idActualizar
 			);
 		} else {
 			$respuesta = array(
@@ -102,15 +114,15 @@ if ($_POST['registro'] == 'actualizar') {
 // ELIMINAR
 
 if ($_POST['registro'] == 'eliminar') {
-	$id_borrar = $_POST['id'];
+	$idEliminar = $_POST['id'];
 	try {
-		$stmt = $conn->prepare("DELETE FROM invitados WHERE invitado_id = ? ");
-		$stmt->bind_param('i', $id_borrar);
+		$stmt = $conn->prepare("DELETE FROM spinoff WHERE idSpinoff = ? ");
+		$stmt->bind_param('i', $idEliminar);
 		$stmt->execute();
 		if ($stmt->affected_rows) {
 			$respuesta = array(
 				'respuesta' => 'exito',
-				'id_eliminado' => $id_borrar
+				'id_eliminado' => $idEliminar
 			);
 		} else {
 			$respuesta = array(
