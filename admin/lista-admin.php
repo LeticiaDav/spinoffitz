@@ -19,7 +19,7 @@
 		<div class="row">
 			<div class="col-xs-12">
 				
-				<div class="box">
+				<div class="box box-solid box-success">
 					<div class="box-header">
 						<h3 class="box-title">Maneja los usuarios en esta sección</h3>
 					</div>

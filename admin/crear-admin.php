@@ -19,7 +19,7 @@
 			<!-- Main content -->
 			<section class="content">
 				<!-- Default box -->
-				<div class="box">
+				<div class="box box-solid box-warning">
 					<div class="box-header with-border">
 						<h3 class="box-title">Crear administrador</h3>
 					</div>
@@ -48,7 +48,7 @@
 							<!-- /.box-body -->
 							<div class="box-footer">
 								<input type="hidden" name="registro" value="nuevo">
-								<button type="submit" class="btn btn-primary" id="crear_registro_admin">Crear</button>
+								<button type="submit" class="btn btn-warning" id="crear_registro_admin">Crear</button>
 							</div>
 						</form>
 					</div>

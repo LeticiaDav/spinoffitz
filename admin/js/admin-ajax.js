@@ -15,6 +15,10 @@ $(document).ready(function() {
 				var resultado = data;
 				if (resultado.respuesta == 'exito') {
 					swal('¡Muy bien!', 'El administrador se guardó correctamente', 'success');
+					setTimeout(function() {
+						location.reload();
+						window.scrollTo(0,0);
+					}, 2000);
 				} else {
 					swal('¡Qué mal!', 'Ha ocurrido un error', 'error');
 				}
@@ -59,29 +63,33 @@ $(document).ready(function() {
 				var resultado = data;
 				if (resultado.respuesta == 'exito') {
 					swal('¡Muy bien!', 'El administrador se guardó correctamente', 'success');
+					setTimeout(function() {
+						location.reload();
+						window.scrollTo(0,0);
+					}, 2000);
 				} else {
 					swal('¡Qué mal!', 'Ha ocurrido un error', 'error');
 				}
 			}
-		}).fail( function( jqXHR, textStatus, errorThrown ) {
-			if (jqXHR.status === 0) {
-				alert('Not connect: Verify Network.');
-			} else if (jqXHR.status == 404) {
-				alert('Requested page not found [404]');
-			} else if (jqXHR.status == 500) {
-				alert('Internal Server Error [500].');
-			} else if (textStatus === 'parsererror') {
-				alert('Requested JSON parse failed.');
-				console.log(jqXHR.responseText);
-			} else if (textStatus === 'timeout') {
-				alert('Time out error.');
-			} else if (textStatus === 'abort') {
-				alert('Ajax request aborted.');
-			} else {
-				alert('Uncaught Error: ' + jqXHR.responseText);
-			}
-
 		});
+		// .fail( function( jqXHR, textStatus, errorThrown ) {
+		// 	if (jqXHR.status === 0) {
+		// 		alert('Not connect: Verify Network.');
+		// 	} else if (jqXHR.status == 404) {
+		// 		alert('Requested page not found [404]');
+		// 	} else if (jqXHR.status == 500) {
+		// 		alert('Internal Server Error [500].');
+		// 	} else if (textStatus === 'parsererror') {
+		// 		alert('Requested JSON parse failed.');
+		// 		console.log(jqXHR.responseText);
+		// 	} else if (textStatus === 'timeout') {
+		// 		alert('Time out error.');
+		// 	} else if (textStatus === 'abort') {
+		// 		alert('Ajax request aborted.');
+		// 	} else {
+		// 		alert('Uncaught Error: ' + jqXHR.responseText);
+		// 	}
+		// });
 	});
 
 	// ELIMINAR REGISTRO
@@ -121,6 +129,6 @@ $(document).ready(function() {
 				}
 			});
 		}).catch(swal.noop);
-	})
+	});
 
 });

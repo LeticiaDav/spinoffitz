@@ -11,10 +11,10 @@
    ========================================================================== */
 
    html {
-       color: #222;
-       font-size: 1em;
-       line-height: 1.4;
-   }
+     color: #222;
+     font-size: 1em;
+     line-height: 1.4;
+ }
 
 /*
  * Remove text-shadow in selection highlight:
@@ -127,7 +127,9 @@ body.index {
 nav.navbar {
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
-    background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(255,255,255,0.95) 100%);
+    /*background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(255,255,255,0.95) 100%);*/
+    background-color: white;
+    box-shadow: 0px -10px 120px #000000;
 }
 
 a.navbar-brand img {
@@ -156,14 +158,15 @@ ul.navbar-nav {
 
 .active {
     color: #404040 !important;
-    border-radius: 10px;
-    background-color: #E6E6E6;
+    /*border-radius: 10px;*/
+    border-bottom: 2px solid #13F485;
+    /*background-color: #E6E6E6;*/
 }
 
 /*MAIN*/
 
 main {
-   min-height: 100vh;
+ min-height: 100vh;
 }
 
 div.index-image {
@@ -192,6 +195,10 @@ body.index div.card div.card-footer {
 
 div.row div {
     margin-bottom: 15px;
+}
+
+div.row div.buttons {
+    margin-bottom: 0;
 }
 
 h2.title {

@@ -25,7 +25,7 @@ if (!filter_var($id, FILTER_VALIDATE_INT)) {
 			<!-- Main content -->
 			<section class="content">
 				<!-- Default box -->
-				<div class="box">
+				<div class="box box-solid box-info">
 					<div class="box-header with-border">
 						<h3 class="box-title">Editar administrador</h3>
 					</div>
@@ -55,7 +55,7 @@ if (!filter_var($id, FILTER_VALIDATE_INT)) {
 							<div class="box-footer">
 								<input type="hidden" name="registro" value="actualizar">
 								<input type="hidden" name="id_registro" value="<?php echo $id; ?>">
-								<button type="submit" class="btn btn-primary" name="agregar-admin">Añadir</button>
+								<button type="submit" class="btn btn-info" name="agregar-admin">Añadir</button>
 							</div>
 						</form>
 					</div>

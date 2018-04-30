@@ -19,8 +19,6 @@
 				</span>
 			</div>
 		</form>
-		<!-- /.search form -->
-		<!-- sidebar menu: : style can be found in sidebar.less -->
 		<ul class="sidebar-menu" data-widget="tree">
 			<li class="header">MENÚ DE ADMINISTRACIÓN</li>
 			
@@ -28,86 +26,56 @@
 
 			<li class="treeview">
 				<a href="#">
-					<i class="fa fa-calendar"></i>
-					<span>Spin-Offs</span>
+					<i class="fa fa-circle-notch"></i>
+					<span> &nbsp;Spin-Offs</span>
 				</a>
 				<ul class="treeview-menu">
-					<li><a href="lista-spinoffs.php"><i class="fa fa-list-ul" aria-hidden="true"></i> Ver todos</a></li>
-					<li><a href="crear-spinoff.php"><i class="fa fa-plus-circle" aria-hidden="true"></i> Agregar</a></li>
+					<li><a href="lista-spinoffs.php"><i class="fa fa-list-alt" aria-hidden="true"></i> &nbsp;Ver todos</a></li>
+					<li><a href="crear-spinoff.php"><i class="fa fa-plus-circle" aria-hidden="true"></i> &nbsp;Agregar</a></li>
 				</ul>
 			</li>
 
-			<!-- eventos -->
+			<!-- NOTICIAS -->
+
 			<li class="treeview">
 				<a href="#">
-					<i class="fa fa-calendar"></i>
-					<span>Eventos</span>
+					<i class="fa fa-newspaper"></i>
+					<span> &nbsp;Noticias</span>
 				</a>
 				<ul class="treeview-menu">
-					<li><a href="lista-evento.php"><i class="fa fa-list-ul" aria-hidden="true"></i> Ver todos</a></li>
+					<li><a href="lista-noticias.php"><i class="fa fa-list-alt" aria-hidden="true"></i> &nbsp;Ver todos</a></li>
+					<li><a href="crear-noticia.php"><i class="fa fa-plus-circle" aria-hidden="true"></i> &nbsp;Agregar</a></li>
+				</ul>
+			</li>
+
+			<!-- EVENTOS -->
+
+			<li class="treeview">
+				<a href="#">
+					<i class="fa fa-calendar-alt"></i>
+					<span> &nbsp;Eventos</span>
+				</a>
+				<ul class="treeview-menu">
+					<li><a href="lista-evento.php"><i class="fa fa-list-alt" aria-hidden="true"></i> Ver todos</a></li>
 					<li><a href="crear-evento.php"><i class="fa fa-plus-circle" aria-hidden="true"></i> Agregar</a></li>
 				</ul>
-			</li> <!-- / eventos -->
-			<!-- categoria eventos -->
-			<li class="treeview">
-				<a href="#">
-					<i class="fa fa-book"></i>
-					<span>Categoría de eventos</span>
-				</a>
-				<ul class="treeview-menu">
-					<li><a href="lista-categorias.php"><i class="fa fa-list-ul" aria-hidden="true"></i> Ver todos</a></li>
-					<li><a href="crear-categoria.php"><i class="fa fa-plus-circle" aria-hidden="true"></i> Agregar</a></li>
-				</ul>
-			</li> <!-- / categoria eventos -->
-			<!-- invitados -->
-			<li class="treeview">
-				<a href="#">
-					<i class="fa fa-users"></i>
-					<span>Invitados</span>
-				</a>
-				<ul class="treeview-menu">
-					<li><a href="lista-invitados.php"><i class="fa fa-list-ul" aria-hidden="true"></i> Ver todos</a></li>
-					<li><a href="crear-invitado.php"><i class="fa fa-plus-circle" aria-hidden="true"></i> Agregar</a></li>
-				</ul>
-			</li> <!-- / invitados -->
-			<!-- registrados -->
-			<li class="treeview">
-				<a href="#">
-					<i class="fa fa-address-card"></i>
-					<span>Registrados</span>
-				</a>
-				<ul class="treeview-menu">
-					<li><a href="#"><i class="fa fa-list-ul" aria-hidden="true"></i> Ver todos</a></li>
-					<li><a href="#"><i class="fa fa-plus-circle" aria-hidden="true"></i> Agregar</a></li>
-				</ul>
-			</li> <!-- / registrados -->
-			<!-- administradores -->
+			</li>
+		
+			<!-- ADMINISTRADORES -->
+
 			<?php if ($_SESSION['nivel'] == 1): ?>
 				<li class="treeview">
 					<a href="#">
 						<i class="fa fa-user-circle"></i>
-						<span>Administradores</span>
+						<span> &nbsp;Administradores</span>
 					</a>
 					<ul class="treeview-menu">
-						<li><a href="lista-admin.php"><i class="fa fa-list-ul" aria-hidden="true"></i> Ver todos</a></li>
-						<li><a href="crear-admin.php"><i class="fa fa-plus-circle" aria-hidden="true"></i> Agregar</a></li>
+						<li><a href="lista-admin.php"><i class="fa fa-list-alt" aria-hidden="true"></i> &nbsp;Ver todos</a></li>
+						<li><a href="crear-admin.php"><i class="fa fa-plus-circle" aria-hidden="true"></i> &nbsp;Agregar</a></li>
 					</ul>
-				</li> <!-- / administradores -->
+				</li>
 			<?php endif; ?>
-			<!-- testimoniales -->
-			<li class="treeview">
-				<a href="#">
-					<i class="fa fa-comments"></i>
-					<span>Testimoniales</span>
-				</a>
-				<ul class="treeview-menu">
-					<li><a href="#"><i class="fa fa-list-ul" aria-hidden="true"></i> Ver todos</a></li>
-					<li><a href="#"><i class="fa fa-plus-circle" aria-hidden="true"></i> Agregar</a></li>
-				</ul>
-			</li> <!-- / testimoniales -->
+			
 		</ul>
 	</section>
-	<!-- /.sidebar -->
 </aside>
-
-	<!-- =============================================== -->

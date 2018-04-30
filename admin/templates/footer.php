@@ -1,9 +1,8 @@
    <footer class="main-footer">
    	<div class="pull-right hidden-xs">
-   		<b>Version</b> 2.4.0
+   		<b>Version</b> 1.0.0
    	</div>
-   	<strong>Copyright &copy; 2014-2016 <a href="https://adminlte.io">Almsaeed Studio</a>.</strong> All rights
-   	reserved.
+   	<strong>Worktecs &copy; 2018 <a href="http://mapaches3.itz.edu.mx/itz_rg/" target="_blank">Instituto Tecnológico de Zacatecas </a>.</strong> Todos los derechos reservados.
    </footer>
 
    <!-- Add the sidebar's background. This div must be placed

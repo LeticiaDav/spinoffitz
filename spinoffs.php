@@ -29,9 +29,14 @@ try {
 					<div class="card-body">
 						<h5 class="card-title"><?php echo $spinoffs['nombreSpinoff'];?></h5>
 						<p class="card-text text-truncate"><?php echo $spinoffs['giroSpinoff'];?></p>
-						<button type="button" class="btn btn-outline-secondary btn-sm" data-toggle="modal" data-target="#<?php echo $spinoffs['idSpinoff']; ?>">
-							Ver información
-						</button>
+						<div class="buttons d-flex justify-content-between">
+							<button type="button" class="btn btn-outline-secondary btn-sm" data-toggle="modal" data-target="#<?php echo $spinoffs['idSpinoff']; ?>">
+								Ver información
+							</button>
+							<a class="btn btn-outline-secondary btn-sm" href="img/spinoffs/<?php echo $spinoffs["imagenSpinoff"]; ?>" target="_blank" >
+								Ver imagen
+							</a>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -67,13 +72,12 @@ try {
 									<h6>Integrantes</h6>
 									<p><?php echo str_replace("\n", "<br>", $spinoffs['integrantesSpinoff']); ?></p>
 								</li>
-								
 								<?php if($spinoffs['videoSpinoff'] == null): ?>
 								<?php else: ?>	
 									<li class="list-group-item">
-										<h6>Video</h6>
-										<iframe class="video" src="<?php echo $spinoffs['videoSpinoff'] ?>" frameborder="0" allowfullscreen></iframe>
-									</li>
+									<h6>Video</h6>
+									<p><?php echo $spinoffs['videoSpinoff']; ?></p>
+								</li>
 								<?php endif; ?>
 								
 								<li class="list-group-item">

@@ -9,8 +9,8 @@
 	<!-- Content Header (Page header) -->
 	<section class="content-header">
 		<h1>
-			Listado de invitados
-			<small></small>
+			Spin-Offs
+			<small>Tabla con acciones para editar o eliminar un spin-off</small>
 		</h1>
 	</section>
 
@@ -19,9 +19,9 @@
 		<div class="row">
 			<div class="col-xs-12">
 				
-				<div class="box">
+				<div class="box box-solid box-success">
 					<div class="box-header">
-						<h3 class="box-title">Maneja a los invitados en esta sección</h3>
+						<h3 class="box-title">Listado de los spin-offs</h3>
 					</div>
 					<!-- /.box-header -->
 					<div class="box-body">
@@ -58,8 +58,8 @@
 									<!-- <td><?php echo $spinoffs['serviciosSpinoff']; ?></td> -->
 									<!-- <td><?php echo $spinoffs['proyectosSpinoff']; ?></td> -->
 									<!-- <td><?php echo $spinoffs['integrantesSpinoff']; ?></td> -->
-									<!-- <td><img src="../img/spinoffs/<?php //echo $spinoffs['url_imagen']; ?>" width="50"></td> -->
-									<td><?php echo $spinoffs['imagenSpinoff']; ?></td>
+									<td><img src="../img/spinoffs/<?php echo $spinoffs['imagenSpinoff']; ?>" width="80"></td>
+									<!-- <td><?php echo $spinoffs['imagenSpinoff']; ?></td> -->
 									<!-- <td><?php //echo $spinoffs['videoSpinoff']; ?></td> -->
 									<td><?php echo $spinoffs['telefonoSpinoff']; ?></td>
 									<td><?php echo $spinoffs['emailSpinoff']; ?></td>
