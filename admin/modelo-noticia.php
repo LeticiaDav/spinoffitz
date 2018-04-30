@@ -9,10 +9,15 @@ if ($_POST['registro'] == 'nuevo') {
 	// 	'file' => $_FILES
 	// );
 	// die(json_encode($respuesta));
-	$nombre = $_POST['nombre_invitado'];
-	$apellido = $_POST['apellido_invitado'];
-	$biografia = $_POST['biografia_invitado'];
-	$directorio = "../img/invitados/";
+	$titulo = $_POST['titulo_evento'];
+	$lugar = $_POST['lugar_evento'];
+	$inicio = $_POST['inicio_evento'];
+	$inicio_f = date('Y-m-d', strtotime($inicio));
+	$fin = $_POST['fin_evento'];
+	$fin_f = date('Y-m-d', strtotime($fin));
+	$cuerpo = $_POST['cuerpo_evento'];
+	$contacto = $_POST['contacto_evento'];
+	$directorio = "../img/eventos/";
 	if (!is_dir($directorio)) {
 		mkdir($directorio, 0755, true); // directorio, permisos, recursivo (mismo permiso a archivos)
 	}
@@ -25,14 +30,14 @@ if ($_POST['registro'] == 'nuevo') {
 		);
 	}
 	try {
-		$stmt = $conn->prepare("INSERT INTO invitados(nombre_invitado, apellido_invitado, descripcion, url_imagen) VALUES (?, ?, ?, ?)");
-		$stmt->bind_param("ssss", $nombre, $apellido, $biografia, $imagen_url);
+		$stmt = $conn->prepare("INSERT INTO evento(tituloEvento, inicioEvento, finEvento, lugarEvento, cuerpoEvento, imagenEvento, contactoEvento) VALUES (?, ?, ?, ?, ?, ?, ?)");
+		$stmt->bind_param("sssssss", $titulo, $inicio_f, $fin_f, $lugar, $cuerpo, $imagen_url, $contacto);
 		$stmt->execute();
-		$id_insertado = $stmt->insert_id;
+		$idCrear = $stmt->insert_id;
 		if ($stmt->affected_rows) {
 			$respuesta = array (
 				'respuesta' => 'exito',
-				'id_insertado' => $id_insertado,
+				'id_insertado' => $idCrear,
 				'resultado_imagen' => $imagen_resultado
 			);
 		} else {
@@ -53,11 +58,16 @@ if ($_POST['registro'] == 'nuevo') {
 // ACTUALIZAR
 
 if ($_POST['registro'] == 'actualizar') {
-	$nombre = $_POST['nombre_invitado'];
-	$apellido = $_POST['apellido_invitado'];
-	$biografia = $_POST['biografia_invitado'];
-	$directorio = "../img/invitados/";
-	$id_registro = $_POST['id_registro'];
+	$titulo = $_POST['titulo_evento'];
+	$lugar = $_POST['lugar_evento'];
+	$inicio = $_POST['inicio_evento'];
+	$inicio_f = date('Y-m-d', strtotime($inicio));
+	$fin = $_POST['fin_evento'];
+	$fin_f = date('Y-m-d', strtotime($fin));
+	$cuerpo = $_POST['cuerpo_evento'];
+	$contacto = $_POST['contacto_evento'];
+	$directorio = "../img/eventos/";
+	$idActualizar = $_POST['id_registro'];
 	if (!is_dir($directorio)) {
 		mkdir($directorio, 0755, true); // directorio, permisos, recursivo (mismo permiso a archivos)
 	}
@@ -72,17 +82,17 @@ if ($_POST['registro'] == 'actualizar') {
 	try {
 		// con imagen
 		if ($_FILES['archivo_imagen']['size'] > 0) {
-			$stmt = $conn->prepare("UPDATE invitados SET nombre_invitado = ?, apellido_invitado = ?, descripcion = ?, url_imagen = ?, editado = NOW() WHERE invitado_id = ?");
-			$stmt->bind_param("ssssi", $nombre, $apellido, $biografia, $imagen_url, $id_registro);
+			$stmt = $conn->prepare("UPDATE evento SET tituloEvento = ?, inicioEvento = ?, finEvento = ?, lugarEvento = ?, cuerpoEvento = ?, imagenEvento = ?, contactoEvento = ?, editadoEvento = NOW() WHERE idEvento = ?");
+			$stmt->bind_param("sssssssi", $titulo, $inicio_f, $fin_f, $lugar, $cuerpo, $imagen_url, $contacto, $idActualizar);
 		} else {
-			$stmt = $conn->prepare("UPDATE invitados SET nombre_invitado = ?, apellido_invitado = ?, descripcion = ?, editado = NOW() WHERE invitado_id = ?");
-			$stmt->bind_param("sssi", $nombre, $apellido, $biografia, $id_registro);
+			$stmt = $conn->prepare("UPDATE evento SET tituloEvento = ?, inicioEvento = ?, finEvento = ?, lugarEvento = ?, cuerpoEvento = ?, contactoEvento = ?, editadoEvento = NOW() WHERE idEvento = ?");
+			$stmt->bind_param("ssssssi", $titulo, $inicio_f, $fin_f, $lugar, $cuerpo, $contacto, $idActualizar);
 		}
 		$estado = $stmt->execute();
 		if ($estado == true) {
 			$respuesta = array(
 				'respuesta' => 'exito',
-				'id_actualizado' => $id_registro
+				'id_actualizado' => $idActualizar
 			);
 		} else {
 			$respuesta = array(
@@ -102,15 +112,15 @@ if ($_POST['registro'] == 'actualizar') {
 // ELIMINAR
 
 if ($_POST['registro'] == 'eliminar') {
-	$id_borrar = $_POST['id'];
+	$idEliminar = $_POST['id'];
 	try {
-		$stmt = $conn->prepare("DELETE FROM invitados WHERE invitado_id = ? ");
-		$stmt->bind_param('i', $id_borrar);
+		$stmt = $conn->prepare("DELETE FROM eventos WHERE idEvento = ? ");
+		$stmt->bind_param('i', $idEliminar);
 		$stmt->execute();
 		if ($stmt->affected_rows) {
 			$respuesta = array(
 				'respuesta' => 'exito',
-				'id_eliminado' => $id_borrar
+				'id_eliminado' => $idEliminar
 			);
 		} else {
 			$respuesta = array(

@@ -35,9 +35,14 @@ try {
 					<div class="card-body">
 						<h5 class="card-title"><?php echo $eventos['tituloEvento'];?></h5>
 						<p class="card-text text-truncate"><?php echo $inicioEvento; ?></p>
-						<button type="button" class="btn btn-outline-secondary btn-sm" data-toggle="modal" data-target="#<?php echo $eventos['idEvento']; ?>">
-							Ver información
-						</button>
+						<div class="buttons d-flex justify-content-between">
+							<button type="button" class="btn btn-outline-secondary btn-sm" data-toggle="modal" data-target="#<?php echo $eventos['idEvento']; ?>">
+								Ver información
+							</button>
+							<a class="btn btn-outline-secondary btn-sm" href="img/eventos/<?php echo $eventos["imagenEvento"]; ?>" target="_blank" >
+								Ver imagen
+							</a>
+						</div>
 					</div>
 				</div>
 			</div>

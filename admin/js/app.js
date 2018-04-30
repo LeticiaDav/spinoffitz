@@ -45,6 +45,12 @@ $(document).ready(function() {
       autoclose: true
     });
 
+    //Date picker
+    $('#fecha2').datepicker({
+      autoclose: true
+    });
+
+
     $('.seleccionar').select2();
 
     //Timepicker

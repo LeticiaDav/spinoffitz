@@ -72,7 +72,7 @@
 							<!-- /.box-body -->
 							<div class="box-footer">
 								<input type="hidden" name="registro" value="nuevo">
-								<button type="submit" class="btn btn-warning" id="crear_registro">Añadir</button>
+								<button type="submit" class="btn btn-warning" id="crear_registro">Crear</button>
 							</div>
 						</form>
 					</div>

@@ -4,22 +4,41 @@ include_once('funciones/funciones.php');
 // CREAR
 
 if ($_POST['registro'] == 'nuevo') {
+	// $respuesta = array(
+	// 	'post' => $_POST,
+	// 	'file' => $_FILES
+	// );
+	// die(json_encode($respuesta));
 	$titulo = $_POST['titulo_evento'];
-	$categoria_id = $_POST['categoria_evento'];
-	$invitado_id = $_POST['invitado'];
-	$fecha = $_POST['fecha_evento'];
-	$fecha_formateada = date('Y-m-d', strtotime($fecha));
-	$hora = $_POST['hora_evento'];
-	$hora_formateada = date('H:i', strtotime($hora));
+	$lugar = $_POST['lugar_evento'];
+	$inicio = $_POST['inicio_evento'];
+	$inicio_f = date('Y-m-d', strtotime($inicio));
+	$fin = $_POST['fin_evento'];
+	$fin_f = date('Y-m-d', strtotime($fin));
+	$cuerpo = $_POST['cuerpo_evento'];
+	$contacto = $_POST['contacto_evento'];
+	$directorio = "../img/eventos/";
+	if (!is_dir($directorio)) {
+		mkdir($directorio, 0755, true); // directorio, permisos, recursivo (mismo permiso a archivos)
+	}
+	if (move_uploaded_file($_FILES['archivo_imagen']['tmp_name'], $directorio . $_FILES['archivo_imagen']['name'])) {
+		$imagen_url = $_FILES['archivo_imagen']['name'];
+		$imagen_resultado = "Se subió correctamente";
+	} else {
+		$respuesta = array (
+			'respuesta' => error_get_last()
+		);
+	}
 	try {
-		$stmt = $conn->prepare("INSERT INTO eventos(nombre_evento, fecha_evento, hora_evento, id_cat_evento, id_inv) VALUES (?, ?, ?, ?, ?)");
-		$stmt->bind_param("sssii", $titulo, $fecha_formateada, $hora_formateada, $categoria_id, $invitado_id);
+		$stmt = $conn->prepare("INSERT INTO evento(tituloEvento, inicioEvento, finEvento, lugarEvento, cuerpoEvento, imagenEvento, contactoEvento) VALUES (?, ?, ?, ?, ?, ?, ?)");
+		$stmt->bind_param("sssssss", $titulo, $inicio_f, $fin_f, $lugar, $cuerpo, $imagen_url, $contacto);
 		$stmt->execute();
-		$id_insertado = $stmt->insert_id;
+		$idCrear = $stmt->insert_id;
 		if ($stmt->affected_rows) {
 			$respuesta = array (
 				'respuesta' => 'exito',
-				'id_insertado' => $id_insertado
+				'id_insertado' => $idCrear,
+				'resultado_imagen' => $imagen_resultado
 			);
 		} else {
 			$respuesta = array (
@@ -40,21 +59,40 @@ if ($_POST['registro'] == 'nuevo') {
 
 if ($_POST['registro'] == 'actualizar') {
 	$titulo = $_POST['titulo_evento'];
-	$categoria_id = $_POST['categoria_evento'];
-	$invitado_id = $_POST['invitado'];
-	$fecha = $_POST['fecha_evento'];
-	$fecha_formateada = date('Y-m-d', strtotime($fecha));
-	$hora = $_POST['hora_evento'];
-	$hora_formateada = date('H:i', strtotime($hora));
-	$id_registro = $_POST['id_registro'];
+	$lugar = $_POST['lugar_evento'];
+	$inicio = $_POST['inicio_evento'];
+	$inicio_f = date('Y-m-d', strtotime($inicio));
+	$fin = $_POST['fin_evento'];
+	$fin_f = date('Y-m-d', strtotime($fin));
+	$cuerpo = $_POST['cuerpo_evento'];
+	$contacto = $_POST['contacto_evento'];
+	$directorio = "../img/eventos/";
+	$idActualizar = $_POST['id_registro'];
+	if (!is_dir($directorio)) {
+		mkdir($directorio, 0755, true); // directorio, permisos, recursivo (mismo permiso a archivos)
+	}
+	if (move_uploaded_file($_FILES['archivo_imagen']['tmp_name'], $directorio . $_FILES['archivo_imagen']['name'])) {
+		$imagen_url = $_FILES['archivo_imagen']['name'];
+		$imagen_resultado = "Se subió correctamente";
+	} else {
+		$respuesta = array (
+			'respuesta' => error_get_last()
+		);
+	}
 	try {
-		$stmt = $conn->prepare("UPDATE eventos SET nombre_evento = ?, fecha_evento = ?, hora_evento = ?, id_cat_evento = ?, id_inv = ?, editado = NOW() WHERE evento_id = ?;");
-		$stmt->bind_param("sssiii", $titulo, $fecha_formateada, $hora_formateada, $categoria_id, $invitado_id, $id_registro);
-		$stmt->execute();
-		if ($stmt->affected_rows) {
+		// con imagen
+		if ($_FILES['archivo_imagen']['size'] > 0) {
+			$stmt = $conn->prepare("UPDATE evento SET tituloEvento = ?, inicioEvento = ?, finEvento = ?, lugarEvento = ?, cuerpoEvento = ?, imagenEvento = ?, contactoEvento = ?, editadoEvento = NOW() WHERE idEvento = ?");
+			$stmt->bind_param("sssssssi", $titulo, $inicio_f, $fin_f, $lugar, $cuerpo, $imagen_url, $contacto, $idActualizar);
+		} else {
+			$stmt = $conn->prepare("UPDATE evento SET tituloEvento = ?, inicioEvento = ?, finEvento = ?, lugarEvento = ?, cuerpoEvento = ?, contactoEvento = ?, editadoEvento = NOW() WHERE idEvento = ?");
+			$stmt->bind_param("ssssssi", $titulo, $inicio_f, $fin_f, $lugar, $cuerpo, $contacto, $idActualizar);
+		}
+		$estado = $stmt->execute();
+		if ($estado == true) {
 			$respuesta = array(
 				'respuesta' => 'exito',
-				'id_actualizado' => $id_registro
+				'id_actualizado' => $idActualizar
 			);
 		} else {
 			$respuesta = array(
@@ -74,15 +112,15 @@ if ($_POST['registro'] == 'actualizar') {
 // ELIMINAR
 
 if ($_POST['registro'] == 'eliminar') {
-	$id_borrar = $_POST['id'];
+	$idEliminar = $_POST['id'];
 	try {
-		$stmt = $conn->prepare("DELETE FROM eventos WHERE evento_id = ? ");
-		$stmt->bind_param('i', $id_borrar);
+		$stmt = $conn->prepare("DELETE FROM eventos WHERE idEvento = ? ");
+		$stmt->bind_param('i', $idEliminar);
 		$stmt->execute();
 		if ($stmt->affected_rows) {
 			$respuesta = array(
 				'respuesta' => 'exito',
-				'id_eliminado' => $id_borrar
+				'id_eliminado' => $idEliminar
 			);
 		} else {
 			$respuesta = array(

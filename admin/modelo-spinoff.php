@@ -34,11 +34,11 @@ if ($_POST['registro'] == 'nuevo') {
 		$stmt = $conn->prepare("INSERT INTO spinoff(nombreSpinoff, giroSpinoff, descripcionSpinoff, serviciosSpinoff, proyectosSpinoff, integrantesSpinoff, imagenSpinoff, videoSpinoff, telefonoSpinoff, emailSpinoff) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 		$stmt->bind_param("ssssssssss", $nombre, $giro, $descripcion, $servicios, $proyectos, $integrantes, $imagen_url, $video, $telefono, $email);
 		$stmt->execute();
-		$id_insertado = $stmt->insert_id;
+		$idCrear = $stmt->insert_id;
 		if ($stmt->affected_rows) {
 			$respuesta = array (
 				'respuesta' => 'exito',
-				'id_insertado' => $id_insertado,
+				'id_insertado' => $idCrear,
 				'resultado_imagen' => $imagen_resultado
 			);
 		} else {

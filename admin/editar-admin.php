@@ -55,7 +55,7 @@ if (!filter_var($id, FILTER_VALIDATE_INT)) {
 							<div class="box-footer">
 								<input type="hidden" name="registro" value="actualizar">
 								<input type="hidden" name="id_registro" value="<?php echo $id; ?>">
-								<button type="submit" class="btn btn-info" name="agregar-admin">Añadir</button>
+								<button type="submit" class="btn btn-info" name="agregar-admin">Editar</button>
 							</div>
 						</form>
 					</div>

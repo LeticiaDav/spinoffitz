@@ -56,8 +56,8 @@
 					<span> &nbsp;Eventos</span>
 				</a>
 				<ul class="treeview-menu">
-					<li><a href="lista-evento.php"><i class="fa fa-list-alt" aria-hidden="true"></i> Ver todos</a></li>
-					<li><a href="crear-evento.php"><i class="fa fa-plus-circle" aria-hidden="true"></i> Agregar</a></li>
+					<li><a href="lista-eventos.php"><i class="fa fa-list-alt" aria-hidden="true"></i>  &nbsp;Ver todos</a></li>
+					<li><a href="crear-evento.php"><i class="fa fa-plus-circle" aria-hidden="true"></i>  &nbsp;Agregar</a></li>
 				</ul>
 			</li>
 		
@@ -70,7 +70,7 @@
 						<span> &nbsp;Administradores</span>
 					</a>
 					<ul class="treeview-menu">
-						<li><a href="lista-admin.php"><i class="fa fa-list-alt" aria-hidden="true"></i> &nbsp;Ver todos</a></li>
+						<li><a href="lista-admins.php"><i class="fa fa-list-alt" aria-hidden="true"></i> &nbsp;Ver todos</a></li>
 						<li><a href="crear-admin.php"><i class="fa fa-plus-circle" aria-hidden="true"></i> &nbsp;Agregar</a></li>
 					</ul>
 				</li>

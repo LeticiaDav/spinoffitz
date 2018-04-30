@@ -1,8 +1,8 @@
 <?php 
 function usuario_autentificado() {
 	if(!revisar_usuario()) {
-		// header('Location: login.php');
-		// exit();
+		header('Location: login.php');
+		exit();
 	}
 }
 
