@@ -19,7 +19,7 @@ try {
 
 	<h2 class="text-light font-weight-light title">Eventos</h2>
 
-	<div class="row">
+	<div class="row cards">
 		<?php while($eventos = $result->fetch_assoc()): ?>
 			<?php 
 			setlocale(LC_TIME, 'es_ES.UTF-8');
@@ -35,9 +35,9 @@ try {
 					<div class="card-body">
 						<h5 class="card-title"><?php echo $eventos['tituloEvento'];?></h5>
 						<p class="card-text text-truncate"><?php echo $inicioEvento; ?></p>
-						<div class="buttons d-flex justify-content-between">
+						<div class="buttons">
 							<button type="button" class="btn btn-outline-secondary btn-sm" data-toggle="modal" data-target="#<?php echo $eventos['idEvento']; ?>">
-								Ver información
+								Ver evento
 							</button>
 							<a class="btn btn-outline-secondary btn-sm" href="img/eventos/<?php echo $eventos["imagenEvento"]; ?>" target="_blank" >
 								Ver imagen

@@ -9,8 +9,8 @@
 	<!-- Content Header (Page header) -->
 	<section class="content-header">
 		<h1>
-			Eventos
-			<small>Llena el formulario para crear un evento</small>
+			Noticias
+			<small>Llena el formulario para crear una noticia</small>
 		</h1>
 	</section>
 
@@ -21,50 +21,37 @@
 				<!-- Default box -->
 				<div class="box box-solid box-warning">
 					<div class="box-header with-border">
-						<h3 class="box-title">Crear evento</h3>
+						<h3 class="box-title">Crear noticia</h3>
 					</div>
 					<div class="box-body">
 						<!-- form start -->
-						<form role="form" name="guardar-registro" id="guardar-registro-archivo" method="post" action="modelo-evento.php" enctype="multipart/form-data">
+						<form role="form" name="guardar-registro" id="guardar-registro-archivo" method="post" action="modelo-noticia.php" enctype="multipart/form-data">
 							<div class="box-body">
 								<div class="form-group">
-									<label for="titulo_evento">Título</label>
-									<input type="text" class="form-control" id="titulo_evento" name="titulo_evento" placeholder="Ingresa el titulo" required="required">
+									<label for="titulo_noticia">Título</label>
+									<input type="text" class="form-control" id="titulo_noticia" name="titulo_noticia" placeholder="Ingresa la noticia" required="required">
 								</div>
 								<div class="form-group">
-									<label for="lugar_evento">Lugar</label>
-									<input type="text" class="form-control" id="lugar_evento" name="lugar_evento" placeholder="Ingresa el lugar" required="required">
+									<label for="cuerpo_noticia">Cuerpo</label>
+									<textarea class="form-control" name="cuerpo_noticia" id="cuerpo_noticia" rows="10" placeholder="Ingresa el cuerpo de la noticia" required="required"></textarea>
 								</div>
 								<div class="form-group">
-									<label>Fecha de inicio</label>
+									<label>Fecha</label>
 									<div class="input-group date">
 										<div class="input-group-addon">
 											<i class="fa fa-calendar-alt"></i>
 										</div>
-										<input type="text" class="form-control pull-right" id="fecha" name="inicio_evento" required="required">
+										<input type="text" class="form-control pull-right" id="fecha" name="fecha_noticia" required="required">
 									</div>
 								</div>
 								<div class="form-group">
-									<label>Fecha de finalización</label>
-									<div class="input-group date">
-										<div class="input-group-addon">
-											<i class="fa fa-calendar-alt"></i>
-										</div>
-										<input type="text" class="form-control pull-right" id="fecha2" name="fin_evento" required="required">
-									</div>
+									<label for="fuente_noticia">Fuente</label>
+									<input type="text" class="form-control" id="fuente_noticia" name="fuente_noticia" placeholder="Ingresa la fuente" required="required">
 								</div>
 								<div class="form-group">
-									<label for="cuerpo_evento">Cuerpo</label>
-									<textarea class="form-control" name="cuerpo_evento" id="cuerpo_evento" rows="10" placeholder="Ingresa el cuerpo del evento" required="required"></textarea>
-								</div>
-								<div class="form-group">
-									<label for="imagen_evento">Imagen</label>
-									<input type="file" id="imagen_evento" name="archivo_imagen" required="required">
-									<p class="help-block">Añade la imagen del evento.</p>
-								</div>
-								<div class="form-group">
-									<label for="contacto_evento">Contacto</label>
-									<input type="text" class="form-control" id="contacto_evento" name="contacto_evento" placeholder="Ingresa el contacto" required="required">
+									<label for="imagen_noticia">Imagen</label>
+									<input type="file" id="imagen_noticia" name="archivo_imagen" required="required">
+									<p class="help-block">Añade la imagen de la noticia.</p>
 								</div>
 							</div>
 							<!-- /.box-body -->

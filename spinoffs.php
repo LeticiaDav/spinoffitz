@@ -19,7 +19,7 @@ try {
 
 	<h2 class="text-light font-weight-light title">Spin-Offs</h2>
 
-	<div class="row">
+	<div class="row cards">
 		<?php while($spinoffs = $result->fetch_assoc()): ?>
 			<div class="col-sm-6">
 				<div class="card">
@@ -29,9 +29,9 @@ try {
 					<div class="card-body">
 						<h5 class="card-title"><?php echo $spinoffs['nombreSpinoff'];?></h5>
 						<p class="card-text text-truncate"><?php echo $spinoffs['giroSpinoff'];?></p>
-						<div class="buttons d-flex justify-content-between">
+						<div class="buttons">
 							<button type="button" class="btn btn-outline-secondary btn-sm" data-toggle="modal" data-target="#<?php echo $spinoffs['idSpinoff']; ?>">
-								Ver información
+								Ver spin-off
 							</button>
 							<a class="btn btn-outline-secondary btn-sm" href="img/spinoffs/<?php echo $spinoffs["imagenSpinoff"]; ?>" target="_blank" >
 								Ver imagen

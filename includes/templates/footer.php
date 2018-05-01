@@ -1,6 +1,6 @@
 <!-- Footer -->
 <footer class="footer bg-light">
-	<div class="container d-flex flex-inline justify-content-between align-items-center">
+	<div class="container d-flex flex-wrap justify-content-between align-items-center">
 		<img class="spo" src="img/logo_azul_chico.png" class="logo" alt="Logo de Spin-Off ITZ">
 		<a href="http://mapaches3.itz.edu.mx/itz_rg/" target="_blank">
 			<img src="img/itz.png" class="itz" alt="Logo del ITZ">

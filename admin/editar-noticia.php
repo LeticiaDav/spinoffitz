@@ -15,8 +15,8 @@ if (!filter_var($id, FILTER_VALIDATE_INT)) {
 	<!-- Content Header (Page header) -->
 	<section class="content-header">
 		<h1>
-			Eventos
-			<small>Llena el formulario para editar un evento</small>
+			Noticias
+			<small>Llena el formulario para editar una noticia</small>
 		</h1>
 	</section>
 
@@ -27,68 +27,51 @@ if (!filter_var($id, FILTER_VALIDATE_INT)) {
 				<!-- Default box -->
 				<div class="box box-solid box-info">
 					<div class="box-header with-border">
-						<h3 class="box-title">Editar evento</h3>
+						<h3 class="box-title">Editar noticia</h3>
 					</div>
 					<div class="box-body">
 						<!-- form start -->
-						<form role="form" name="guardar-registro" id="guardar-registro-archivo" method="post" action="modelo-evento.php" enctype="multipart/form-data">
+						<form role="form" name="guardar-registro" id="guardar-registro-archivo" method="post" action="modelo-noticia.php" enctype="multipart/form-data">
 							<div class="box-body">
 								<?php 
-								$sql = "SELECT * FROM evento WHERE idEvento = $id";
+								$sql = "SELECT * FROM noticia WHERE idNoticia = $id";
 								$resultado = $conn->query($sql);
-								$eventos = $resultado->fetch_assoc();
+								$noticias = $resultado->fetch_assoc();
 								?>
 								<div class="form-group">
-									<label for="titulo_evento">Título</label>
-									<input type="text" class="form-control" id="titulo_evento" name="titulo_evento" placeholder="Ingresa el titulo" value="<?php echo $eventos['tituloEvento']; ?>">
+									<label for="titulo_noticia">Título</label>
+									<input type="text" class="form-control" id="titulo_noticia" name="titulo_noticia" placeholder="Ingresa el titulo" value="<?php echo $noticias['tituloNoticia']; ?>">
 								</div>
 								<div class="form-group">
-									<label for="lugar_evento">Lugar</label>
-									<input type="text" class="form-control" id="lugar_evento" name="lugar_evento" placeholder="Ingresa el lugar" value="<?php echo $eventos['lugarEvento']; ?>">
+									<label for="cuerpo_noticia">Cuerpo</label>
+									<textarea class="form-control" name="cuerpo_noticia" id="cuerpo_noticia" rows="10" placeholder="Ingresa el cuerpo de la noticia"><?php echo $noticias['cuerpoNoticia']; ?></textarea>
 								</div>
 								<div class="form-group">
 									<?php 
-									$inicio = $eventos['inicioEvento'];
-									$inicio_f = date('m/d/Y', strtotime($inicio));
+									$fecha = $noticias['fechaNoticia'];
+									$fecha_f = date('m/d/Y', strtotime($fecha));
 									?>
-									<label>Fecha de inicio</label>
+									<label>Fecha</label>
 									<div class="input-group date">
 										<div class="input-group-addon">
 											<i class="fa fa-calendar-alt"></i>
 										</div>
-										<input type="text" class="form-control pull-right" id="fecha" name="inicio_evento" value="<?php echo $inicio_f; ?>">
+										<input type="text" class="form-control pull-right" id="fecha" name="fecha_noticia" value="<?php echo $fecha_f; ?>">
 									</div>
 								</div>
 								<div class="form-group">
-									<?php 
-									$fin = $eventos['finEvento'];
-									$fin_f = date('m/d/Y', strtotime($fin));
-									?>
-									<label>Fecha de finalización</label>
-									<div class="input-group date">
-										<div class="input-group-addon">
-											<i class="fa fa-calendar-alt"></i>
-										</div>
-										<input type="text" class="form-control pull-right" id="fecha2" name="fin_evento" value="<?php echo $fin_f; ?>">
-									</div>
-								</div>
-								<div class="form-group">
-									<label for="cuerpo_evento">Cuerpo</label>
-									<textarea class="form-control" name="cuerpo_evento" id="cuerpo_evento" rows="10" placeholder="Ingresa el cuerpo del evento"><?php echo $eventos['cuerpoEvento']; ?></textarea>
+									<label for="fuente_noticia">Fuente</label>
+									<input type="text" class="form-control" id="fuente_noticia" name="fuente_noticia" placeholder="Ingresa la fuente" value="<?php echo $noticias['fuenteNoticia']; ?>">
 								</div>
 								<div class="form-group">
 									<label for="imagen_actual">Imagen actual</label>
 									<br>
-									<img src="../img/eventos/<?php echo $eventos['imagenEvento']; ?>" width="200">
+									<img src="../img/noticias/<?php echo $noticias['imagenNoticia']; ?>" width="200">
 								</div>
 								<div class="form-group">
-									<label for="imagen_evento">Imagen</label>
-									<input type="file" id="imagen_evento" name="archivo_imagen">
-									<p class="help-block">Añade la imagen del evento.</p>
-								</div>
-								<div class="form-group">
-									<label for="contacto_evento">Contacto</label>
-									<input type="text" class="form-control" id="contacto_evento" name="contacto_evento" placeholder="Ingresa el contacto" value="<?php echo $eventos['contactoEvento']; ?>">
+									<label for="imagen_noticia">Imagen</label>
+									<input type="file" id="imagen_noticia" name="archivo_imagen">
+									<p class="help-block">Añade la imagen de la noticia.</p>
 								</div>
 							</div>
 							<!-- /.box-body -->

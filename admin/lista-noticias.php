@@ -21,7 +21,7 @@
 				
 				<div class="box box-solid box-success">
 					<div class="box-header">
-						<h3 class="box-title">Listado de los eventos</h3>
+						<h3 class="box-title">Listado de los noticias</h3>
 					</div>
 					<!-- /.box-header -->
 					<div class="box-body">
@@ -30,33 +30,33 @@
 								<tr>
 									<th>Título</th>
 									<th>Fecha</th>
-									<th>Lugar</th>
+									<th>Fuente</th>
 									<th>Imagen</th>
-									<th>Contacto</th>
 									<th>Acciones</th>
 								</tr>
 							</thead>
 							<tbody>
 								<?php 
 								try {
-									$sql = "SELECT * FROM evento";
+									$sql = "SELECT * FROM noticia;";
 									$resultado = $conn->query($sql);
 								} catch (Exception $e) {
 									$error = $e->getMessage();
 									echo $error;
 								}
-								while ($eventos = $resultado->fetch_assoc()) { ?>
+								while ($noticias = $resultado->fetch_assoc()) { ?>
 								<tr>
-									<td><?php echo $eventos['tituloEvento']; ?></td>
-									<td><?php echo $eventos['inicioEvento'] . " al " . $eventos['finEvento']; ?></td>
-									<td><?php echo $eventos['lugarEvento']; ?></td>
-									<td><img src="../img/eventos/<?php echo $eventos['imagenEvento']; ?>" width="80"></td>
-									<td><?php echo $eventos['contactoEvento'] ?></td>
+									<td><?php echo $noticias['tituloNoticia']; ?></td>
+									<td><?php echo $noticias['fechaNoticia']; ?></td>
+									<td><?php echo $noticias['fuenteNoticia']; ?></td>
 									<td>
-										<a href="editar-evento.php?id=<?php echo $eventos['idEvento'] ?>" class="btn bg-orange btn-flat margin">
+										<img src="../img/noticias/<?php echo $noticias['imagenNoticia']; ?>" width="80">
+									</td> 
+									<td>
+										<a href="editar-noticia.php?id=<?php echo $noticias['idNoticia']; ?>" class="btn bg-orange btn-flat margin">
 											<i class="fa fa-pencil-alt"></i>
 										</a>
-										<a href="#" data-id="<?php echo $eventos['idEvento']; ?>" data-tipo="evento" class="btn bg-maroon btn-flat margin borrar_registro">
+										<a href="#" data-id="<?php echo $noticias['idNoticia']; ?>" data-tipo="noticia" class="btn bg-maroon btn-flat margin borrar_registro">
 											<i class="fa fa-trash"></i>
 										</a>
 									</td>
@@ -67,9 +67,8 @@
 								<tr>
 									<th>Título</th>
 									<th>Fecha</th>
-									<th>Lugar</th>
+									<th>Fuente</th>
 									<th>Imagen</th>
-									<th>Contacto</th>
 									<th>Acciones</th>
 								</tr>
 							</tfoot>

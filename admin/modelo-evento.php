@@ -114,7 +114,7 @@ if ($_POST['registro'] == 'actualizar') {
 if ($_POST['registro'] == 'eliminar') {
 	$idEliminar = $_POST['id'];
 	try {
-		$stmt = $conn->prepare("DELETE FROM eventos WHERE idEvento = ? ");
+		$stmt = $conn->prepare("DELETE FROM evento WHERE idEvento = ? ");
 		$stmt->bind_param('i', $idEliminar);
 		$stmt->execute();
 		if ($stmt->affected_rows) {

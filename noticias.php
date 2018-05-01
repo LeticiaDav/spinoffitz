@@ -20,7 +20,7 @@ try {
 
 	<h2 class="text-light font-weight-light title">Noticias</h2>
 
-	<div class="row">
+	<div class="row cards">
 
 		<?php while($noticias = $result->fetch_assoc()): ?>
 			<?php 
@@ -39,9 +39,9 @@ try {
 					<div class="card-body">
 						<h5 class="card-title"><?php echo $noticias['tituloNoticia']; ?></h5>
 						<p class="card-text text-truncate"><?php echo $fechaNoticia; ?></p>
-						<div class="buttons d-flex justify-content-between">
+						<div class="buttons_3card">
 							<button type="button" class="btn btn-outline-secondary btn-sm" data-toggle="modal" data-target="#<?php echo $noticias['idNoticia']; ?>">
-								Ver información
+								Ver noticia
 							</button>
 							<a class="btn btn-outline-secondary btn-sm" href="img/noticias/<?php echo $noticias["imagenNoticia"]; ?>" target="_blank" >
 								Ver imagen
