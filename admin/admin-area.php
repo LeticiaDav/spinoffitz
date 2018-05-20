@@ -39,6 +39,15 @@
 			</div>
 			<!-- /.box -->
 
+			<!-- <div class="box">
+				<div class="box-header with-border">
+					<h3 class="box-title">Acciones</h3><hr>
+					<a href="login.php?cerrar_sesion=true" class="btn btn-danger btn-flat">Cerrar sesión</a>
+					<div class="box-tools pull-right">
+					</div>
+				</div>
+			</div> -->
+
 		</section>
 		<!-- /.content -->
 	</div>

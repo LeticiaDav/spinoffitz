@@ -22,6 +22,15 @@
 		<ul class="sidebar-menu" data-widget="tree">
 			<li class="header">MENÚ DE ADMINISTRACIÓN</li>
 			
+			<!-- INICIO -->
+
+			<li>
+				<a href="admin-area.php">
+					<i class="fa fa-home"></i>
+					<span> &nbsp;Inicio</span>
+				</a>
+			</li>
+
 			<!-- SPINOFFS -->
 
 			<li class="treeview">
