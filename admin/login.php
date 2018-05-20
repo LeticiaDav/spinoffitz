@@ -14,7 +14,9 @@ if (isset($_GET['cerrar_sesion'])) {
 <body class="hold-transition login-page">
 	<div class="login-box">
 		<div class="login-logo">
-			<a href="../index.php"><b>Spin-Off ITZ</b></a>
+			<a href="../index.php">
+				<img src="../img/logo-l-negro.png" class="img-responsive pull-center" style="padding: 10px;">
+			</a>
 		</div>
 		<!-- /.login-logo -->
 		<div class="login-box-body">
@@ -32,7 +34,7 @@ if (isset($_GET['cerrar_sesion'])) {
 				<div class="row">
 					<div class="col-xs-12">
 						<input type="hidden" name="login-admin" value="1">
-						<button type="submit" class="btn btn-primary btn-block btn-flat">Acceder</button>
+						<button type="submit" class="btn btn-dark btn-block btn-flat">Acceder</button>
 					</div>
 				</div>
 			</form>

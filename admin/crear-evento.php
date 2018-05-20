@@ -10,7 +10,7 @@
 	<section class="content-header">
 		<h1>
 			Eventos
-			<small>Llena el formulario para crear un evento</small>
+			<small>Todos los campos son obligatorios</small>
 		</h1>
 	</section>
 
@@ -19,7 +19,7 @@
 			<!-- Main content -->
 			<section class="content">
 				<!-- Default box -->
-				<div class="box box-solid box-warning">
+				<div class="box box-solid box-info">
 					<div class="box-header with-border">
 						<h3 class="box-title">Crear evento</h3>
 					</div>
@@ -70,7 +70,7 @@
 							<!-- /.box-body -->
 							<div class="box-footer">
 								<input type="hidden" name="registro" value="nuevo">
-								<button type="submit" class="btn btn-warning" id="crear_registro">Crear</button>
+								<button type="submit" class="btn btn-info" id="crear_registro">Crear</button>
 							</div>
 						</form>
 					</div>

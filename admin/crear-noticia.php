@@ -10,7 +10,7 @@
 	<section class="content-header">
 		<h1>
 			Noticias
-			<small>Llena el formulario para crear una noticia</small>
+			<small>Todos los campos son obligatorios</small>
 		</h1>
 	</section>
 
@@ -19,7 +19,7 @@
 			<!-- Main content -->
 			<section class="content">
 				<!-- Default box -->
-				<div class="box box-solid box-warning">
+				<div class="box box-solid box-info">
 					<div class="box-header with-border">
 						<h3 class="box-title">Crear noticia</h3>
 					</div>
@@ -29,10 +29,12 @@
 							<div class="box-body">
 								<div class="form-group">
 									<label for="titulo_noticia">Título</label>
+									<small> (máx. 120 caracteres)</small>
 									<input type="text" class="form-control" id="titulo_noticia" name="titulo_noticia" placeholder="Ingresa la noticia" required="required">
 								</div>
 								<div class="form-group">
 									<label for="cuerpo_noticia">Cuerpo</label>
+									<small> (máx. 2000 caracteres)</small>
 									<textarea class="form-control" name="cuerpo_noticia" id="cuerpo_noticia" rows="10" placeholder="Ingresa el cuerpo de la noticia" required="required"></textarea>
 								</div>
 								<div class="form-group">
@@ -46,10 +48,12 @@
 								</div>
 								<div class="form-group">
 									<label for="fuente_noticia">Fuente</label>
+									<small> (máx. 80 caracteres)</small>
 									<input type="text" class="form-control" id="fuente_noticia" name="fuente_noticia" placeholder="Ingresa la fuente" required="required">
 								</div>
 								<div class="form-group">
 									<label for="imagen_noticia">Imagen</label>
+									<small> (máx. 2 MB)</small>
 									<input type="file" id="imagen_noticia" name="archivo_imagen" required="required">
 									<p class="help-block">Añade la imagen de la noticia.</p>
 								</div>
@@ -57,7 +61,7 @@
 							<!-- /.box-body -->
 							<div class="box-footer">
 								<input type="hidden" name="registro" value="nuevo">
-								<button type="submit" class="btn btn-warning" id="crear_registro">Crear</button>
+								<button type="submit" class="btn btn-info" id="crear_registro">Crear</button>
 							</div>
 						</form>
 					</div>

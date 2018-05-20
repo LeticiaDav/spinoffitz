@@ -19,8 +19,10 @@
 		<!-- Default box -->
 		<div class="box">
 			<div class="box-header with-border">
-				<h3 class="box-title">Esta área te ayudara a gestionar spin-offs, noticias y eventos</h3>
-
+				<h3 class="box-title">Esta área te ayudará a crear, ver, editar y eliminar los diferentes elementos de la página principal del Spin-Off ITZ</h3><hr>
+				<h4>- Spin-Offs</h4>
+				<h4>- Noticias</h4>
+				<h4>- Eventos</h4>
 				<div class="box-tools pull-right">
 					<!-- <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
 						<button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button> -->

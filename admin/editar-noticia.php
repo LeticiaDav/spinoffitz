@@ -25,7 +25,7 @@ if (!filter_var($id, FILTER_VALIDATE_INT)) {
 			<!-- Main content -->
 			<section class="content">
 				<!-- Default box -->
-				<div class="box box-solid box-info">
+				<div class="box box-solid box-warning">
 					<div class="box-header with-border">
 						<h3 class="box-title">Editar noticia</h3>
 					</div>
@@ -40,10 +40,12 @@ if (!filter_var($id, FILTER_VALIDATE_INT)) {
 								?>
 								<div class="form-group">
 									<label for="titulo_noticia">Título</label>
+									<small> (máx. 120 caracteres)</small>
 									<input type="text" class="form-control" id="titulo_noticia" name="titulo_noticia" placeholder="Ingresa el titulo" value="<?php echo $noticias['tituloNoticia']; ?>">
 								</div>
 								<div class="form-group">
 									<label for="cuerpo_noticia">Cuerpo</label>
+									<small> (máx. 2000 caracteres)</small>
 									<textarea class="form-control" name="cuerpo_noticia" id="cuerpo_noticia" rows="10" placeholder="Ingresa el cuerpo de la noticia"><?php echo $noticias['cuerpoNoticia']; ?></textarea>
 								</div>
 								<div class="form-group">
@@ -61,6 +63,7 @@ if (!filter_var($id, FILTER_VALIDATE_INT)) {
 								</div>
 								<div class="form-group">
 									<label for="fuente_noticia">Fuente</label>
+									<small> (máx. 80 caracteres)</small>
 									<input type="text" class="form-control" id="fuente_noticia" name="fuente_noticia" placeholder="Ingresa la fuente" value="<?php echo $noticias['fuenteNoticia']; ?>">
 								</div>
 								<div class="form-group">
@@ -70,6 +73,7 @@ if (!filter_var($id, FILTER_VALIDATE_INT)) {
 								</div>
 								<div class="form-group">
 									<label for="imagen_noticia">Imagen</label>
+									<small> (máx. 2 MB)</small>
 									<input type="file" id="imagen_noticia" name="archivo_imagen">
 									<p class="help-block">Añade la imagen de la noticia.</p>
 								</div>
@@ -78,7 +82,7 @@ if (!filter_var($id, FILTER_VALIDATE_INT)) {
 							<div class="box-footer">
 								<input type="hidden" name="registro" value="actualizar">
 								<input type="hidden" name="id_registro" value="<?php echo $id; ?>">
-								<button type="submit" class="btn btn-info">Editar</button>
+								<button type="submit" class="btn btn-warning">Editar</button>
 							</div>
 						</form>
 					</div>

@@ -3,7 +3,6 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
-	<title>Spin-Off ITZ</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="manifest" href="site.webmanifest">
@@ -18,6 +17,8 @@
 	$archivo = basename($_SERVER['PHP_SELF']);
 	$pagina = str_replace(".php", "", $archivo);
 	?>
+
+	<title><?php echo ucfirst($pagina); ?> • Spin-Off ITZ</title>
 
 	<link rel="stylesheet" href="css/main.css">
 </head>
@@ -47,7 +48,7 @@
 					<span class="navbar-toggler-icon"></span>
 				</button>
 				<div class="collapse navbar-collapse" id="navbarText">
-					<ul class="navbar-nav">
+					<ul class="navbar-nav w-100">
 						<li class="nav-item p-2">
 							<a class="nav-link" href="index.php">Inicio</a>
 						</li>
@@ -62,6 +63,9 @@
 						</li>
 						<li class="nav-item p-2">
 							<a class="nav-link" href="buscar.php">Buscar</a>
+						</li>
+						<li class="nav-item p-2">
+							<a class="nav-link" href="admin/login.php">Acceder</a>
 						</li>
 					</ul>
 				</div>

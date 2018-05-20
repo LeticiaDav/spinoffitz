@@ -6,11 +6,11 @@
 		<div class="user-panel">
 			<div class="info">
 				<p><?php echo $_SESSION['nombre']; ?></p>
-				<a href="#"><i class="fa fa-circle text-success"></i> En línea</a>
+				<small>Administrador</small>
 			</div>
 		</div>
 		<!-- search form -->
-		<form action="#" method="get" class="sidebar-form">
+		<!-- <form action="#" method="get" class="sidebar-form">
 			<div class="input-group">
 				<input type="text" name="q" class="form-control" placeholder="Buscar...">
 				<span class="input-group-btn">
@@ -18,7 +18,7 @@
 					</button>
 				</span>
 			</div>
-		</form>
+		</form> --> <br>
 		<ul class="sidebar-menu" data-widget="tree">
 			<li class="header">MENÚ DE ADMINISTRACIÓN</li>
 			
@@ -60,7 +60,7 @@
 					<li><a href="crear-evento.php"><i class="fa fa-plus-circle" aria-hidden="true"></i>  &nbsp;Agregar</a></li>
 				</ul>
 			</li>
-		
+
 			<!-- ADMINISTRADORES -->
 
 			<?php if ($_SESSION['nivel'] == 1): ?>

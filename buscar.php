@@ -18,9 +18,9 @@ if($_POST) {
 	switch ($seleccion) {
 		case 1: $sql = "SELECT * FROM spinoff WHERE nombreSpinoff LIKE '%" .$busqueda. "%' ORDER BY nombreSpinoff;";
 		break;
-		case 2: $sql = "SELECT * FROM noticia WHERE tituloNoticia LIKE '%" .$busqueda. "%' ORDER BY tituloNoticia;";
+		case 2: $sql = "SELECT * FROM noticia WHERE tituloNoticia LIKE '%" .$busqueda. "%' ORDER BY fechaNoticia DESC;";
 		break;
-		case 3: $sql = "SELECT * FROM evento WHERE tituloEvento LIKE '%" .$busqueda. "%' ORDER BY tituloEvento";
+		case 3: $sql = "SELECT * FROM evento WHERE tituloEvento LIKE '%" .$busqueda. "%' ORDER BY inicioEvento DESC";
 		break;
 		default:
 		desconectar();
@@ -69,7 +69,7 @@ if($_POST) {
 							<?php if ($seleccion == 1):  ?>
 								<?php while ($resultados = $resultado->fetch_assoc()): ?>
 									<li class="list-group-item">
-										<a href="spinoffs.php"><?php echo $resultados['nombreSpinoff']; ?></a><br>
+										<a href="spinoffs.php#<?php echo $resultados['nombreSpinoff']; ?>"><?php echo $resultados['nombreSpinoff']; ?></a><br>
 										<small><?php echo $resultados['descripcionSpinoff']; ?></small>
 									</li>
 								<?php endwhile; ?>
@@ -78,6 +78,7 @@ if($_POST) {
 								<?php while ($resultados = $resultado->fetch_assoc()): ?>
 									<li class="list-group-item">
 										<a href="noticias.php"><?php echo $resultados['tituloNoticia']; ?></a><br>
+										<small><i><?php echo $resultados['fechaNoticia']; ?></i></small><br>
 										<small><?php echo $resultados['cuerpoNoticia']; ?></small>
 									</li>
 								<?php endwhile; ?>
@@ -86,6 +87,7 @@ if($_POST) {
 								<?php while ($resultados = $resultado->fetch_assoc()): ?>
 									<li class="list-group-item">
 										<a href="eventos.php"><?php echo $resultados['tituloEvento']; ?></a><br>
+										<small><i><?php echo $resultados['inicioEvento']; ?></i></small><br>
 										<small><?php echo $resultados['cuerpoEvento']; ?></small>
 									</li>
 								<?php endwhile; ?>
@@ -93,7 +95,7 @@ if($_POST) {
 							<?php $resultado->free(); ?>
 						<?php endif; ?>
 					</ul>
-				</div>
+				</div> 
 			</div>
 		</div>
 	</div>

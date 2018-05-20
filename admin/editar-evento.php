@@ -25,7 +25,7 @@ if (!filter_var($id, FILTER_VALIDATE_INT)) {
 			<!-- Main content -->
 			<section class="content">
 				<!-- Default box -->
-				<div class="box box-solid box-info">
+				<div class="box box-solid box-warning">
 					<div class="box-header with-border">
 						<h3 class="box-title">Editar evento</h3>
 					</div>
@@ -95,7 +95,7 @@ if (!filter_var($id, FILTER_VALIDATE_INT)) {
 							<div class="box-footer">
 								<input type="hidden" name="registro" value="actualizar">
 								<input type="hidden" name="id_registro" value="<?php echo $id; ?>">
-								<button type="submit" class="btn btn-info">Editar</button>
+								<button type="submit" class="btn btn-warning">Editar</button>
 							</div>
 						</form>
 					</div>

@@ -10,7 +10,7 @@
 	<section class="content-header">
 		<h1>
 			Crear administrador
-			<small>Llena el formulario para crear un administrador</small>
+			<small>Todos los campos son obligatorios</small>
 		</h1>
 	</section>
 
@@ -19,7 +19,7 @@
 			<!-- Main content -->
 			<section class="content">
 				<!-- Default box -->
-				<div class="box box-solid box-warning">
+				<div class="box box-solid box-info">
 					<div class="box-header with-border">
 						<h3 class="box-title">Crear administrador</h3>
 					</div>
@@ -29,26 +29,31 @@
 							<div class="box-body">
 								<div class="form-group">
 									<label for="usuario">Usuario</label>
-									<input type="text" class="form-control" id="usuario" name="usuario" placeholder="Ingresa un usuario">
+									<input type="text" class="form-control" id="usuario" name="usuario" placeholder="Ingresa un usuario" required="required">
 								</div>
 								<div class="form-group">
 									<label for="nombre">Nombre</label>
-									<input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingresa tu nombre">
+									<input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingresa tu nombre" required="required">
 								</div>
 								<div class="form-group">
 									<label for="password">Contraseña</label>
-									<input type="password" class="form-control" id="password" name="password" placeholder="Ingresa una contraseña">
+									<input type="password" class="form-control" id="password" name="password" placeholder="Ingresa una contraseña" required="required">
 								</div>
 								<div class="form-group">
 									<label for="password">Repetir contraseña</label>
-									<input type="password" class="form-control" id="repetir_password" name="repetir_password" placeholder="Ingresa la contraseña nuevamente">
+									<input type="password" class="form-control" id="repetir_password" name="repetir_password" placeholder="Ingresa la contraseña nuevamente" required="required">
 									<span id="resultado_password" class="help-block"></span>
+								</div>
+								<div class="form-check">
+									<label for="nivel">Alto nivel</label>
+									<input type="checkbox" class="form-check-input" id="nivel" name="nivel" value="1">
+									<p class="help-block">Permitir a este administrador ver, modificar y eliminar a otros administradores.</p>
 								</div>
 							</div>
 							<!-- /.box-body -->
 							<div class="box-footer">
 								<input type="hidden" name="registro" value="nuevo">
-								<button type="submit" class="btn btn-warning" id="crear_registro_admin">Crear</button>
+								<button type="submit" class="btn btn-info" id="crear_registro_admin">Crear</button>
 							</div>
 						</form>
 					</div>

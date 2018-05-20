@@ -21,15 +21,14 @@ try {
 	<h2 class="text-light font-weight-light title">Noticias</h2>
 
 	<div class="row cards">
-
 		<?php while($noticias = $result->fetch_assoc()): ?>
 			<?php 
 			setlocale(LC_TIME, 'es_ES.UTF-8');
 			setlocale(LC_TIME, 'spanish');
-			$fechaNoticia = utf8_encode(strftime("%A, %d de %B del %Y", strtotime($noticias['fechaNoticia'])));
+			$fechaNoticia = utf8_encode(strftime("%d de %B del %Y", strtotime($noticias['fechaNoticia'])));
 			?>
 			<div class="col-sm-4">
-				<div class="card">
+				<div class="card mb-4">
 					<?php if($noticias['imagenNoticia'] == null): ?>
 					<?php else: ?>
 						<div class="image d-flex justify-content-center align-items-center">

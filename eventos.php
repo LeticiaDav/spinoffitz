@@ -28,7 +28,7 @@ try {
 			$finEvento = utf8_encode(strftime("%A, %d de %B del %Y", strtotime($eventos['finEvento'])));
 			?>
 			<div class="col-sm-6">
-				<div class="card">
+				<div class="card mb-4">
 					<div class="image d-flex justify-content-center align-items-center">
 						<img class="image" src="img/eventos/<?php echo $eventos["imagenEvento"]; ?>" alt="Card image cap">
 					</div>

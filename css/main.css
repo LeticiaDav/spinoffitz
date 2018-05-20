@@ -163,10 +163,37 @@ ul.navbar-nav {
 }
 
 .active {
-    color: #404040 !important;
-    /*border-radius: 10px;*/
-    border-bottom: 2px solid #13F485;
+    border-radius: 6px;
+    background-color: #E6E6E6;
     /*background-color: #E6E6E6;*/
+}
+
+@media screen and (min-width: 768px) {
+    .active {
+        color: #292929 !important;
+        border-radius: 0px;
+        border-bottom: 2px solid #13F485;
+        background-color: unset;
+    }
+}
+
+
+/*COLORES*/
+
+.bg-salient {
+    background-color: #13F485;
+}
+
+.b-salient {
+    border: 5px solid #13F485;
+}
+
+.bg-second {
+    background-color: #DCE6E6;
+}
+
+.b-second {
+   border: 4px solid #DCE6E6;
 }
 
 /*MAIN*/
@@ -197,10 +224,21 @@ body.index div.card {
 body.index div.card div.card-footer {
     text-align: right;
     padding-top: 0px;
+    border-top: 0px;
+    background-color: rgba(0, 0, 0, 0);
 }
 
 div.row.cards div {
-    margin-bottom: 15px;
+    /*margin-bottom: 15px;*/
+}
+
+.badge {
+    font-weight: unset; 
+    line-height: unset;
+}
+
+.badge-pill {
+    border-radius: 2px;
 }
 
 div.row div.buttons {
@@ -266,120 +304,7 @@ li.list-group-item p {
     margin-bottom: 0;
 }
 
-/*~~~~~ Contenido principal ~~~~~*/
-
-.main h2 {
-    font-family: 'Barlow Semi Condensed', sans-serif;
-    font-weight: 600;
-    font-size: 0.8em;
-    text-transform: uppercase;
-    margin-bottom: 10px;
-    color: #808080;
-}
-
-.tarjeta {
-    background-color: #FFFFFF;
-    padding: 5px 30px;
-    /*border-radius: 20px;*/
-    border-radius: 8px;
-    box-shadow: 0px 0px 20px lightgray;
-    margin: 20px 0;
-}
-
-.spinoffs_contenedor a {
-    text-decoration: none;
-}
-
-.spinoffs_contenedor a:focus {
-    width:0px;
-    height:0px;
-    outline:0px;
-}
-
-a.spinoff-info div.tarjeta p {
-    font-size: 1.5em;
-    color: black;
-}
-
-a.noticia-info div.tarjeta p,
-a.evento-info div.tarjeta p {
-    font-size: 1.2em;
-    color: black;
-}
-
-a.noticia-info div.tarjeta p.tarjeta-fecha,
-a.evento-info div.tarjeta p.tarjeta-fecha {
-    font-family: 'Barlow Semi Condensed', sans-serif;
-    font-weight: 600;
-    font-size: 0.8em;
-}
-
-a.spinoff-info div.tarjeta:hover,
-a.noticia-info div.tarjeta:hover,
-a.noticia-info div.tarjeta:hover {
-    background-color: #FCFCFC;
-    border-bottom: 2px solid #13F485;
-    margin-bottom: -2px;
-}
-
-.tarjeta-info div.spinoff-imagen {
-    background-color: #FAFAFA;
-    border-radius: 10px;
-    border: 1px solid lightgray;
-}
-
-.tarjeta-info p.nombre {
-    font-family: 'Barlow Semi Condensed', sans-serif;
-    font-weight: 600;
-    font-size: 2.2em;
-}
-
-.tarjeta-info p.giro {
-    font-family: 'Barlow Semi Condensed', sans-serif;
-    font-weight: 600;
-    font-size: 1em;
-    text-transform: uppercase;
-}
-
-.tarjeta-info p.descripcion,
-.tarjeta-info p.servicios,
-.tarjeta-info p.proyectos,
-.tarjeta-info p.integrantes,
-.tarjeta-info p.email,
-.tarjeta-info p.telefono {
-    font-family: 'Barlow', sans-serif;
-    font-weight: 500;
-    font-size: 1em;
-}
-
-.tarjeta-info p.email span,
-.tarjeta-info p.telefono span {
-    margin-top: 30px;
-    line-height: 0px;
-    font-family: 'Barlow Semi Condensed', sans-serif;
-    font-weight: 600;
-    font-size: 1em;
-}
-
-.tarjeta-info iframe.video {
-    max-width: 100%;
-    height: auto;
-
-}
-
-.tarjeta-info h1 {
-    margin-top: 30px;
-    line-height: 0px;
-    font-family: 'Barlow Semi Condensed', sans-serif;
-    font-weight: 600;
-    font-size: 1em;
-}
-
-div.cboxElement {
-    padding: 10px 40px!important;
-}
-
-/*.................... footer */
+/*FOOTER*/
 
 footer.footer {
     margin-top: 10px;

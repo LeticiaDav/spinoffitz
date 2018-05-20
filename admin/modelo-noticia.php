@@ -1,31 +1,48 @@
 <?php 
 include_once('funciones/funciones.php');
 
+// declaracion de variables
+$titulo = $_POST['titulo_noticia'];
+$fecha = $_POST['fecha_noticia'];
+$fecha_f = date('Y-m-d', strtotime($fecha));
+$cuerpo = $_POST['cuerpo_noticia'];
+$fuente = $_POST['fuente_noticia'];
+$directorio = "../img/noticias/";
+
 // CREAR
 
 if ($_POST['registro'] == 'nuevo') {
-	// $respuesta = array(
-	// 	'post' => $_POST,
-	// 	'file' => $_FILES
-	// );
-	// die(json_encode($respuesta));
-	$titulo = $_POST['titulo_noticia'];
-	$fecha = $_POST['fecha_noticia'];
-	$fecha_f = date('Y-m-d', strtotime($fecha));
-	$cuerpo = $_POST['cuerpo_noticia'];
-	$fuente = $_POST['fuente_noticia'];
-	$directorio = "../img/noticias/";
-	if (!is_dir($directorio)) {
-		mkdir($directorio, 0755, true); // directorio, permisos, recursivo (mismo permiso a archivos)
+	// restriccion de caracteres maximos en los campos
+	if ((strlen($titulo) > 120) || (strlen($cuerpo) > 2050) || (strlen($fuente) > 80)) {
+		$respuesta = array (
+			'respuesta' => 'exceso'
+		);
+		die(json_encode($respuesta));
 	}
-	if (move_uploaded_file($_FILES['archivo_imagen']['tmp_name'], $directorio . $_FILES['archivo_imagen']['name'])) {
-		$imagen_url = $_FILES['archivo_imagen']['name'];
-		$imagen_resultado = "Se subió correctamente";
+
+	// subir un archivo de imagen
+	if (!is_dir($directorio)) {
+		mkdir($directorio, 0755, true);
+	}
+	if ((($_FILES['archivo_imagen']['type'] == 'image/jpeg') || ($_FILES['archivo_imagen']['type'] == 'image/png')) && ($_FILES['archivo_imagen']['size'] < 2000000)) { // 2 MB
+		$nuevo_nombre = time() . $_FILES['archivo_imagen']['name'];
+		if (move_uploaded_file($_FILES['archivo_imagen']['tmp_name'], $directorio . $nuevo_nombre)) {
+			$imagen_url = $nuevo_nombre;
+			$imagen_resultado = "Se subió correctamente";
+		} else {
+			$respuesta = array (
+				'respuesta' => error_get_last()
+			);
+			die(json_encode($respuesta));
+		}
 	} else {
 		$respuesta = array (
-			'respuesta' => error_get_last()
+			'respuesta' => 'imagen_exceso'
 		);
+		die(json_encode($respuesta));
 	}
+
+	// base de datos
 	try {
 		$stmt = $conn->prepare("INSERT INTO noticia(tituloNoticia, fechaNoticia, cuerpoNoticia, fuenteNoticia, imagenNoticia) VALUES (?, ?, ?, ?, ?)");
 		$stmt->bind_param("sssss", $titulo, $fecha_f, $cuerpo, $fuente, $imagen_url);
@@ -55,30 +72,46 @@ if ($_POST['registro'] == 'nuevo') {
 // ACTUALIZAR
 
 if ($_POST['registro'] == 'actualizar') {
-	$titulo = $_POST['titulo_noticia'];
-	$fecha = $_POST['fecha_noticia'];
-	$fecha_f = date('Y-m-d', strtotime($fecha));
-	$cuerpo = $_POST['cuerpo_noticia'];
-	$fuente = $_POST['fuente_noticia'];
-	$directorio = "../img/noticias/";
 	$idActualizar = $_POST['id_registro'];
-	if (!is_dir($directorio)) {
-		mkdir($directorio, 0755, true); // directorio, permisos, recursivo (mismo permiso a archivos)
-	}
-	if (move_uploaded_file($_FILES['archivo_imagen']['tmp_name'], $directorio . $_FILES['archivo_imagen']['name'])) {
-		$imagen_url = $_FILES['archivo_imagen']['name'];
-		$imagen_resultado = "Se subió correctamente";
-	} else {
+
+	// restriccion de caracteres maximos en los campos
+	if ((strlen($titulo) > 120) || (strlen($cuerpo) > 2050) || (strlen($fuente) > 80)) {
 		$respuesta = array (
-			'respuesta' => error_get_last()
+			'respuesta' => 'exceso'
 		);
+		die(json_encode($respuesta));
 	}
+
+	// subir un archivo de imagen
+	if (!is_dir($directorio)) {
+		mkdir($directorio, 0755, true);
+	}
+	if ($_FILES['archivo_imagen']['size'] > 0) {
+		if (($_FILES['archivo_imagen']['type'] == 'image/jpeg' || $_FILES['archivo_imagen']['type'] == 'image/png') && ($_FILES['archivo_imagen']['size'] < 2000000)) { // 2 MB
+			$nuevo_nombre = time() . $_FILES['archivo_imagen']['name'];
+			if (move_uploaded_file($_FILES['archivo_imagen']['tmp_name'], $directorio . $nuevo_nombre)) {
+				$imagen_url = $nuevo_nombre;
+				$imagen_resultado = "Se subió correctamente";
+			} else {
+				$respuesta = array (
+					'respuesta' => error_get_last()
+				);
+				die(json_encode($respuesta));
+			}
+		} else {
+			$respuesta = array (
+				'respuesta' => 'imagen_exceso'
+			);
+			die(json_encode($respuesta));
+		}
+	}
+
+	// base de datos
 	try {
-		// con imagen
-		if ($_FILES['archivo_imagen']['size'] > 0) {
+		if ($_FILES['archivo_imagen']['size'] > 0) { // con imagen
 			$stmt = $conn->prepare("UPDATE noticia SET tituloNoticia = ?, fechaNoticia = ?, cuerpoNoticia = ?, fuenteNoticia = ?, imagenNoticia = ?, editadoNoticia = NOW() WHERE idNoticia = ?");
 			$stmt->bind_param("sssssi", $titulo, $fecha_f, $cuerpo, $fuente, $imagen_url, $idActualizar);
-		} else {
+		} else { // sin imagen
 			$stmt = $conn->prepare("UPDATE noticia SET tituloNoticia = ?, fechaNoticia = ?, cuerpoNoticia = ?, fuenteNoticia = ?, editadoNoticia = NOW() WHERE idNoticia = ?");
 			$stmt->bind_param("ssssi", $titulo, $fecha_f, $cuerpo, $fuente, $idActualizar);
 		}
@@ -107,6 +140,8 @@ if ($_POST['registro'] == 'actualizar') {
 
 if ($_POST['registro'] == 'eliminar') {
 	$idEliminar = $_POST['id'];
+
+	//base de datos
 	try {
 		$stmt = $conn->prepare("DELETE FROM noticia WHERE idNoticia = ? ");
 		$stmt->bind_param('i', $idEliminar);

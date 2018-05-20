@@ -11,7 +11,7 @@ $(document).ready(function() {
 			url: $(this).attr('action'),
 			dataType: 'json',
 			success: function(data) {
-				console.log(data);
+				// console.log(data);
 				var resultado = data;
 				if (resultado.respuesta == 'exito') {
 					swal('¡Muy bien!', 'El administrador se guardó correctamente', 'success');
@@ -19,28 +19,14 @@ $(document).ready(function() {
 						location.reload();
 						window.scrollTo(0,0);
 					}, 2000);
-				} else {
+				}
+				if (resultado.respuesta == 'exceso') {
+					swal('¡Qué mal!', 'Un campo excede el máximo de caracteres', 'error');
+				} 
+				if (resultado.respuesta == 'error') {
 					swal('¡Qué mal!', 'Ha ocurrido un error', 'error');
 				}
 			}
-		}).fail( function( jqXHR, textStatus, errorThrown ) {
-			if (jqXHR.status === 0) {
-				alert('Not connect: Verify Network.');
-			} else if (jqXHR.status == 404) {
-				alert('Requested page not found [404]');
-			} else if (jqXHR.status == 500) {
-				alert('Internal Server Error [500].');
-			} else if (textStatus === 'parsererror') {
-				alert('Requested JSON parse failed.');
-				console.log(jqXHR.responseText);
-			} else if (textStatus === 'timeout') {
-				alert('Time out error.');
-			} else if (textStatus === 'abort') {
-				alert('Ajax request aborted.');
-			} else {
-				alert('Uncaught Error: ' + jqXHR.responseText);
-			}
-
 		});
 	});
 
@@ -59,17 +45,38 @@ $(document).ready(function() {
 			async: true,
 			cache: false,
 			success: function(data) {
-				console.log(data);
+				// console.log(data);
 				var resultado = data;
-				if (resultado.respuesta == 'exito') {
+				switch (resultado.respuesta) {
+					case 'exito':
 					swal('¡Muy bien!', 'El administrador se guardó correctamente', 'success');
 					setTimeout(function() {
 						location.reload();
 						window.scrollTo(0,0);
 					}, 2000);
-				} else {
+					break;
+					case 'exceso':
+					swal('¡Qué mal!', 'Un campo excede el máximo de caracteres', 'error');
+					break;
+					case 'imagen_exceso':
+					swal('¡Qué mal!', 'El archivo no es una imagen válida o excede el tamaño indicado', 'error');
+					break;
+					default:
 					swal('¡Qué mal!', 'Ha ocurrido un error', 'error');
 				}
+				// if (resultado.respuesta == 'exito') {
+				// 	swal('¡Muy bien!', 'El administrador se guardó correctamente', 'success');
+				// 	setTimeout(function() {
+				// 		location.reload();
+				// 		window.scrollTo(0,0);
+				// 	}, 2000);
+				// }
+				// if (resultado.respuesta == 'exceso') {
+				// 	swal('¡Qué mal!', 'Un campo excede el máximo de caracteres', 'error');
+				// } 
+				// if (resultado.respuesta == 'error') {
+				// 	swal('¡Qué mal!', 'Ha ocurrido un error', 'error');
+				// }
 			}
 		});
 		// .fail( function( jqXHR, textStatus, errorThrown ) {
@@ -114,14 +121,14 @@ $(document).ready(function() {
 				url: 'modelo-' + tipo + '.php',
 				dataType: "json",
 				success: function(data) {
-					console.log(data);
+					// console.log(data);
 					var resultado = data;
 					if (resultado.respuesta == 'exito') {
 						swal(
 							'Eliminado',
 							'El registro fue eliminado',
 							'success'
-							)
+							);
 						jQuery('[data-id="' + resultado.id_eliminado + '"]').parents('tr').remove();
 					} else {
 						swal('¡Qué mal!', 'No se pudo eliminar el registro', 'error').catch(swal.noop);;
