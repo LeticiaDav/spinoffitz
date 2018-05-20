@@ -1,17 +1,21 @@
 <?php 
 include_once('funciones/funciones.php');
 
-// declaracion de variables
-$titulo = $_POST['titulo_noticia'];
-$fecha = $_POST['fecha_noticia'];
-$fecha_f = date('Y-m-d', strtotime($fecha));
-$cuerpo = $_POST['cuerpo_noticia'];
-$fuente = $_POST['fuente_noticia'];
-$directorio = "../img/noticias/";
-
 // CREAR
 
 if ($_POST['registro'] == 'nuevo') {
+
+	// sanitizar el metodo post
+	$formulario = filter_var_array($_POST, FILTER_SANITIZE_STRING);
+
+	// declaracion de variables
+	$titulo = $formulario['titulo_noticia'];
+	$fecha = $formulario['fecha_noticia'];
+	$fecha_f = date('Y-m-d', strtotime($fecha));
+	$cuerpo = $formulario['cuerpo_noticia'];
+	$fuente = $formulario['fuente_noticia'];
+	$directorio = "../img/noticias/";
+
 	// restriccion de caracteres maximos en los campos
 	if ((strlen($titulo) > 120) || (strlen($cuerpo) > 2050) || (strlen($fuente) > 80)) {
 		$respuesta = array (
@@ -72,7 +76,18 @@ if ($_POST['registro'] == 'nuevo') {
 // ACTUALIZAR
 
 if ($_POST['registro'] == 'actualizar') {
-	$idActualizar = $_POST['id_registro'];
+
+	// sanitizar el metodo post
+	$formulario = filter_var_array($_POST, FILTER_SANITIZE_STRING);
+
+	// declaracion de variables
+	$titulo = $formulario['titulo_noticia'];
+	$fecha = $formulario['fecha_noticia'];
+	$fecha_f = date('Y-m-d', strtotime($fecha));
+	$cuerpo = $formulario['cuerpo_noticia'];
+	$fuente = $formulario['fuente_noticia'];
+	$directorio = "../img/noticias/";
+	$idActualizar = filter_var($_POST['id_registro'], FILTER_SANITIZE_NUMBER_INT);
 
 	// restriccion de caracteres maximos en los campos
 	if ((strlen($titulo) > 120) || (strlen($cuerpo) > 2050) || (strlen($fuente) > 80)) {
@@ -139,7 +154,11 @@ if ($_POST['registro'] == 'actualizar') {
 // ELIMINAR
 
 if ($_POST['registro'] == 'eliminar') {
-	$idEliminar = $_POST['id'];
+
+	// declaracion de variables
+	$idEliminar = filter_var($_POST['id'], FILTER_SANITIZE_NUMBER_INT);
+
+	die(json_encode($idEliminar));
 
 	//base de datos
 	try {

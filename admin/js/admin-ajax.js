@@ -22,7 +22,7 @@ $(document).ready(function() {
 				}
 				if (resultado.respuesta == 'exceso') {
 					swal('¡Qué mal!', 'Un campo excede el máximo de caracteres', 'error');
-				} 
+				}
 				if (resultado.respuesta == 'error') {
 					swal('¡Qué mal!', 'Ha ocurrido un error', 'error');
 				}
@@ -45,7 +45,7 @@ $(document).ready(function() {
 			async: true,
 			cache: false,
 			success: function(data) {
-				// console.log(data);
+				console.log(data);
 				var resultado = data;
 				switch (resultado.respuesta) {
 					case 'exito':
@@ -64,19 +64,6 @@ $(document).ready(function() {
 					default:
 					swal('¡Qué mal!', 'Ha ocurrido un error', 'error');
 				}
-				// if (resultado.respuesta == 'exito') {
-				// 	swal('¡Muy bien!', 'El administrador se guardó correctamente', 'success');
-				// 	setTimeout(function() {
-				// 		location.reload();
-				// 		window.scrollTo(0,0);
-				// 	}, 2000);
-				// }
-				// if (resultado.respuesta == 'exceso') {
-				// 	swal('¡Qué mal!', 'Un campo excede el máximo de caracteres', 'error');
-				// } 
-				// if (resultado.respuesta == 'error') {
-				// 	swal('¡Qué mal!', 'Ha ocurrido un error', 'error');
-				// }
 			}
 		});
 		// .fail( function( jqXHR, textStatus, errorThrown ) {
@@ -124,14 +111,10 @@ $(document).ready(function() {
 					// console.log(data);
 					var resultado = data;
 					if (resultado.respuesta == 'exito') {
-						swal(
-							'Eliminado',
-							'El registro fue eliminado',
-							'success'
-							);
+						swal('Eliminado', 'El registro fue eliminado', 'success');
 						jQuery('[data-id="' + resultado.id_eliminado + '"]').parents('tr').remove();
 					} else {
-						swal('¡Qué mal!', 'No se pudo eliminar el registro', 'error').catch(swal.noop);;
+						swal('¡Qué mal!', 'No se pudo eliminar el registro', 'error').catch(swal.noop);
 					}
 				}
 			});
