@@ -29,10 +29,12 @@
 							<div class="box-body">
 								<div class="form-group">
 									<label for="titulo_evento">Título</label>
+									<small> (máx. 120 caracteres)</small>
 									<input type="text" class="form-control" id="titulo_evento" name="titulo_evento" placeholder="Ingresa el titulo" required="required">
 								</div>
 								<div class="form-group">
 									<label for="lugar_evento">Lugar</label>
+									<small> (máx. 80 caracteres)</small>
 									<input type="text" class="form-control" id="lugar_evento" name="lugar_evento" placeholder="Ingresa el lugar" required="required">
 								</div>
 								<div class="form-group">
@@ -55,15 +57,18 @@
 								</div>
 								<div class="form-group">
 									<label for="cuerpo_evento">Cuerpo</label>
+									<small> (máx. 2000 caracteres)</small>
 									<textarea class="form-control" name="cuerpo_evento" id="cuerpo_evento" rows="10" placeholder="Ingresa el cuerpo del evento" required="required"></textarea>
 								</div>
 								<div class="form-group">
 									<label for="imagen_evento">Imagen</label>
+									<small> (máx. 2 MB)</small>
 									<input type="file" id="imagen_evento" name="archivo_imagen" required="required">
 									<p class="help-block">Añade la imagen del evento.</p>
 								</div>
 								<div class="form-group">
 									<label for="contacto_evento">Contacto</label>
+									<small> (máx. 50 caracteres)</small>
 									<input type="text" class="form-control" id="contacto_evento" name="contacto_evento" placeholder="Ingresa el contacto" required="required">
 								</div>
 							</div>

@@ -1,22 +1,38 @@
 <?php 
 include_once('funciones/funciones.php');
 
-$usuario = $_POST['usuario'];
-$nombre = $_POST['nombre'];
-$clave = $_POST['password'];
-if (isset($_POST['nivel'])) {
-	$nivel = $_POST['nivel'];
-} else {
-	$nivel = 0;
-}
-
 // CREAR
 
 if ($_POST['registro'] == 'nuevo') {
+
+	// sanitizar el metodo post
+	$formulario = filter_var_array($_POST, FILTER_SANITIZE_STRING);
+
+	// declaracion de variables
+	$usuario = $formulario['usuario'];
+	$nombre = $formulario['nombre'];
+	$clave = $formulario['password'];
+	if (isset($_POST['nivel'])) {
+		$nivel = $_POST['nivel'];
+	} else {
+		$nivel = 0;
+	}
+
+	// restriccion de caracteres maximos en los campos
+	if ((strlen($usuario) > 50) || (strlen($nombre) > 100) || (strlen($clave) > 20)) {
+		$respuesta = array (
+			'respuesta' => 'exceso'
+		);
+		die(json_encode($respuesta));
+	}
+
+	// hashear la contraeña
 	$opciones = array(
 		'cost' => 12
 	);
 	$claveHash = password_hash($clave, PASSWORD_BCRYPT, $opciones);
+
+	// base de datos
 	try {
 		$stmt = $conn->prepare("INSERT INTO admin(usuarioAdmin, nombreAdmin, claveAdmin, editadoAdmin, nivelAdmin) VALUES (?, ?, ?, NOW(), ?)");
 		$stmt->bind_param("sssi", $usuario, $nombre, $claveHash, $nivel);
@@ -43,7 +59,30 @@ if ($_POST['registro'] == 'nuevo') {
 // ACTUALIZAR
 
 if ($_POST['registro'] == 'actualizar') {
-	$idActualizar = $_POST['id_registro'];
+
+	// sanitizar el metodo post
+	$formulario = filter_var_array($_POST, FILTER_SANITIZE_STRING);
+
+	// declaracion de variables
+	$usuario = $formulario['usuario'];
+	$nombre = $formulario['nombre'];
+	$clave = $formulario['password'];
+	if (isset($_POST['nivel'])) {
+		$nivel = $_POST['nivel'];
+	} else {
+		$nivel = 0;
+	}
+	$idActualizar = filter_var($_POST['id_registro'], FILTER_SANITIZE_NUMBER_INT);
+
+	// restriccion de caracteres maximos en los campos
+	if ((strlen($usuario) > 50) || (strlen($nombre) > 100) || (strlen($clave) > 20)) {
+		$respuesta = array (
+			'respuesta' => 'exceso'
+		);
+		die(json_encode($respuesta));
+	}
+
+	// base de datos
 	try {
 		if (empty($_POST['password'])) {
 			$stmt = $conn->prepare("UPDATE admin SET usuarioAdmin = ?, nombreAdmin = ?, editadoAdmin = NOW(), nivelAdmin = ? WHERE idAdmin = ?");
@@ -80,7 +119,11 @@ if ($_POST['registro'] == 'actualizar') {
 // ELIMINAR
 
 if ($_POST['registro'] == 'eliminar') {
-	$idEliminar = $_POST['id'];
+	
+	// declaracion de variables
+	$idEliminar = filter_var($_POST['id'], FILTER_SANITIZE_NUMBER_INT);
+
+	// base de datos
 	try {
 		$stmt = $conn->prepare("DELETE FROM admin WHERE idAdmin = ? ");
 		$stmt->bind_param('i', $idEliminar);

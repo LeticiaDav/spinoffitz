@@ -4,31 +4,52 @@ include_once('funciones/funciones.php');
 // CREAR
 
 if ($_POST['registro'] == 'nuevo') {
-	// $respuesta = array(
-	// 	'post' => $_POST,
-	// 	'file' => $_FILES
-	// );
-	// die(json_encode($respuesta));
-	$titulo = $_POST['titulo_evento'];
-	$lugar = $_POST['lugar_evento'];
-	$inicio = $_POST['inicio_evento'];
+	
+	// sanitizar el metodo post
+	$formulario = filter_var_array($_POST, FILTER_SANITIZE_STRING);
+
+	// declaracion de variables
+	$titulo = $formulario['titulo_evento'];
+	$lugar = $formulario['lugar_evento'];
+	$inicio = $formulario['inicio_evento'];
 	$inicio_f = date('Y-m-d', strtotime($inicio));
-	$fin = $_POST['fin_evento'];
+	$fin = $formulario['fin_evento'];
 	$fin_f = date('Y-m-d', strtotime($fin));
-	$cuerpo = $_POST['cuerpo_evento'];
-	$contacto = $_POST['contacto_evento'];
+	$cuerpo = $formulario['cuerpo_evento'];
+	$contacto = $formulario['contacto_evento'];
 	$directorio = "../img/eventos/";
-	if (!is_dir($directorio)) {
-		mkdir($directorio, 0755, true); // directorio, permisos, recursivo (mismo permiso a archivos)
+	
+	// restriccion de caracteres maximos en los campos
+	if ((strlen($titulo) > 120) || (strlen($cuerpo) > 2050) || (strlen($lugar) > 80) || (strlen($contacto) > 50)) {
+		$respuesta = array (
+			'respuesta' => 'exceso'
+		);
+		die(json_encode($respuesta));
 	}
-	if (move_uploaded_file($_FILES['archivo_imagen']['tmp_name'], $directorio . $_FILES['archivo_imagen']['name'])) {
-		$imagen_url = $_FILES['archivo_imagen']['name'];
-		$imagen_resultado = "Se subió correctamente";
+
+	// subir un archivo de imagen
+	if (!is_dir($directorio)) {
+		mkdir($directorio, 0755, true);
+	}
+	if ((($_FILES['archivo_imagen']['type'] == 'image/jpeg') || ($_FILES['archivo_imagen']['type'] == 'image/png')) && ($_FILES['archivo_imagen']['size'] < 2000000)) { // 2 MB
+		$nuevo_nombre = time() . $_FILES['archivo_imagen']['name'];
+		if (move_uploaded_file($_FILES['archivo_imagen']['tmp_name'], $directorio . $nuevo_nombre)) {
+			$imagen_url = $nuevo_nombre;
+			$imagen_resultado = "Se subió correctamente";
+		} else {
+			$respuesta = array (
+				'respuesta' => error_get_last()
+			);
+			die(json_encode($respuesta));
+		}
 	} else {
 		$respuesta = array (
-			'respuesta' => error_get_last()
+			'respuesta' => 'imagen_exceso'
 		);
+		die(json_encode($respuesta));
 	}
+
+	// base de datos
 	try {
 		$stmt = $conn->prepare("INSERT INTO evento(tituloEvento, inicioEvento, finEvento, lugarEvento, cuerpoEvento, imagenEvento, contactoEvento) VALUES (?, ?, ?, ?, ?, ?, ?)");
 		$stmt->bind_param("sssssss", $titulo, $inicio_f, $fin_f, $lugar, $cuerpo, $imagen_url, $contacto);
@@ -58,33 +79,60 @@ if ($_POST['registro'] == 'nuevo') {
 // ACTUALIZAR
 
 if ($_POST['registro'] == 'actualizar') {
-	$titulo = $_POST['titulo_evento'];
-	$lugar = $_POST['lugar_evento'];
-	$inicio = $_POST['inicio_evento'];
+
+	// sanitizar el metodo post
+	$formulario = filter_var_array($_POST, FILTER_SANITIZE_STRING);
+
+	// declaracion de variables
+	$titulo = $formulario['titulo_evento'];
+	$lugar = $formulario['lugar_evento'];
+	$inicio = $formulario['inicio_evento'];
 	$inicio_f = date('Y-m-d', strtotime($inicio));
-	$fin = $_POST['fin_evento'];
+	$fin = $formulario['fin_evento'];
 	$fin_f = date('Y-m-d', strtotime($fin));
-	$cuerpo = $_POST['cuerpo_evento'];
-	$contacto = $_POST['contacto_evento'];
+	$cuerpo = $formulario['cuerpo_evento'];
+	$contacto = $formulario['contacto_evento'];
 	$directorio = "../img/eventos/";
-	$idActualizar = $_POST['id_registro'];
-	if (!is_dir($directorio)) {
-		mkdir($directorio, 0755, true); // directorio, permisos, recursivo (mismo permiso a archivos)
-	}
-	if (move_uploaded_file($_FILES['archivo_imagen']['tmp_name'], $directorio . $_FILES['archivo_imagen']['name'])) {
-		$imagen_url = $_FILES['archivo_imagen']['name'];
-		$imagen_resultado = "Se subió correctamente";
-	} else {
+	$idActualizar = filter_var($_POST['id_registro'], FILTER_SANITIZE_NUMBER_INT);
+	
+	// restriccion de caracteres maximos en los campos
+	if ((strlen($titulo) > 120) || (strlen($cuerpo) > 2050) || (strlen($lugar) > 80) || (strlen($contacto) > 50)) {
 		$respuesta = array (
-			'respuesta' => error_get_last()
+			'respuesta' => 'exceso'
 		);
+		die(json_encode($respuesta));
 	}
+	
+	// subir un archivo de imagen
+	if ($_FILES['archivo_imagen']['size'] > 0) {
+		if (!is_dir($directorio)) {
+			mkdir($directorio, 0755, true);
+		}
+		if (($_FILES['archivo_imagen']['type'] == 'image/jpeg' || $_FILES['archivo_imagen']['type'] == 'image/png') && ($_FILES['archivo_imagen']['size'] < 2000000)) { // 2 MB
+			$nuevo_nombre = time() . $_FILES['archivo_imagen']['name'];
+			if (move_uploaded_file($_FILES['archivo_imagen']['tmp_name'], $directorio . $nuevo_nombre)) {
+				$imagen_url = $nuevo_nombre;
+				$imagen_resultado = "Se subió correctamente";
+			} else {
+				$respuesta = array (
+					'respuesta' => error_get_last()
+				);
+				die(json_encode($respuesta));
+			}
+		} else {
+			$respuesta = array (
+				'respuesta' => 'imagen_exceso'
+			);
+			die(json_encode($respuesta));
+		}
+	}
+
+	// base de datos
 	try {
-		// con imagen
-		if ($_FILES['archivo_imagen']['size'] > 0) {
+		if ($_FILES['archivo_imagen']['size'] > 0) { // con imagen
 			$stmt = $conn->prepare("UPDATE evento SET tituloEvento = ?, inicioEvento = ?, finEvento = ?, lugarEvento = ?, cuerpoEvento = ?, imagenEvento = ?, contactoEvento = ?, editadoEvento = NOW() WHERE idEvento = ?");
 			$stmt->bind_param("sssssssi", $titulo, $inicio_f, $fin_f, $lugar, $cuerpo, $imagen_url, $contacto, $idActualizar);
-		} else {
+		} else { // sin imagen
 			$stmt = $conn->prepare("UPDATE evento SET tituloEvento = ?, inicioEvento = ?, finEvento = ?, lugarEvento = ?, cuerpoEvento = ?, contactoEvento = ?, editadoEvento = NOW() WHERE idEvento = ?");
 			$stmt->bind_param("ssssssi", $titulo, $inicio_f, $fin_f, $lugar, $cuerpo, $contacto, $idActualizar);
 		}
@@ -112,7 +160,11 @@ if ($_POST['registro'] == 'actualizar') {
 // ELIMINAR
 
 if ($_POST['registro'] == 'eliminar') {
-	$idEliminar = $_POST['id'];
+
+	// declaracion de variables
+	$idEliminar = filter_var($_POST['id'], FILTER_SANITIZE_NUMBER_INT);
+
+	// base de datos
 	try {
 		$stmt = $conn->prepare("DELETE FROM evento WHERE idEvento = ? ");
 		$stmt->bind_param('i', $idEliminar);

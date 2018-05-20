@@ -14,7 +14,7 @@ $(document).ready(function() {
 				// console.log(data);
 				var resultado = data;
 				if (resultado.respuesta == 'exito') {
-					swal('¡Muy bien!', 'El administrador se guardó correctamente', 'success');
+					swal('¡Muy bien!', 'El registro se guardó correctamente', 'success');
 					setTimeout(function() {
 						location.reload();
 						window.scrollTo(0,0);
@@ -45,11 +45,11 @@ $(document).ready(function() {
 			async: true,
 			cache: false,
 			success: function(data) {
-				console.log(data);
+				// console.log(data);
 				var resultado = data;
 				switch (resultado.respuesta) {
 					case 'exito':
-					swal('¡Muy bien!', 'El administrador se guardó correctamente', 'success');
+					swal('¡Muy bien!', 'El registro se guardó correctamente', 'success');
 					setTimeout(function() {
 						location.reload();
 						window.scrollTo(0,0);

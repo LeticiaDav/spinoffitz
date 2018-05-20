@@ -29,14 +29,17 @@
 							<div class="box-body">
 								<div class="form-group">
 									<label for="usuario">Usuario</label>
+									<small> (máx. 50 caracteres)</small>
 									<input type="text" class="form-control" id="usuario" name="usuario" placeholder="Ingresa un usuario" required="required">
 								</div>
 								<div class="form-group">
 									<label for="nombre">Nombre</label>
+									<small> (máx. 100 caracteres)</small>
 									<input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingresa tu nombre" required="required">
 								</div>
 								<div class="form-group">
 									<label for="password">Contraseña</label>
+									<small> (máx. 20 caracteres)</small>
 									<input type="password" class="form-control" id="password" name="password" placeholder="Ingresa una contraseña" required="required">
 								</div>
 								<div class="form-group">

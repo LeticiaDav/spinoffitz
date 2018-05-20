@@ -98,10 +98,10 @@ if ($_POST['registro'] == 'actualizar') {
 	}
 
 	// subir un archivo de imagen
-	if (!is_dir($directorio)) {
-		mkdir($directorio, 0755, true);
-	}
 	if ($_FILES['archivo_imagen']['size'] > 0) {
+		if (!is_dir($directorio)) {
+			mkdir($directorio, 0755, true);
+		}
 		if (($_FILES['archivo_imagen']['type'] == 'image/jpeg' || $_FILES['archivo_imagen']['type'] == 'image/png') && ($_FILES['archivo_imagen']['size'] < 2000000)) { // 2 MB
 			$nuevo_nombre = time() . $_FILES['archivo_imagen']['name'];
 			if (move_uploaded_file($_FILES['archivo_imagen']['tmp_name'], $directorio . $nuevo_nombre)) {
@@ -157,8 +157,6 @@ if ($_POST['registro'] == 'eliminar') {
 
 	// declaracion de variables
 	$idEliminar = filter_var($_POST['id'], FILTER_SANITIZE_NUMBER_INT);
-
-	die(json_encode($idEliminar));
 
 	//base de datos
 	try {
