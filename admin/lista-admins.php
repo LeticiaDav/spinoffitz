@@ -9,8 +9,8 @@
 	<!-- Content Header (Page header) -->
 	<section class="content-header">
 		<h1>
-			Listado de administradores
-			<small></small>
+			Administradores
+			<small>Tabla con acciones para editar o eliminar un administrador</small>
 		</h1>
 	</section>
 
@@ -21,7 +21,7 @@
 				
 				<div class="box box-solid box-success">
 					<div class="box-header">
-						<h3 class="box-title">Maneja los usuarios en esta sección</h3>
+						<h3 class="box-title">Listado de administradores</h3>
 					</div>
 					<!-- /.box-header -->
 					<div class="box-body">

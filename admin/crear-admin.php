@@ -9,7 +9,7 @@
 	<!-- Content Header (Page header) -->
 	<section class="content-header">
 		<h1>
-			Crear administrador
+			Administradores
 			<small>Todos los campos son obligatorios</small>
 		</h1>
 	</section>

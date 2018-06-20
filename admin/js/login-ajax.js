@@ -14,7 +14,7 @@ $(document).ready(function() {
 					swal('Bienvenid@ ' + resultado.usuario, 'Se ingresó correctamente', 'success');
 					setTimeout(function() {
 						window.location.href = 'admin-area.php'; 
-					}, 2000);
+					}, 3000);
 				} else {
 					swal('¡Qué mal!', 'Usuario o contraseña incorrectos', 'error');
 				}

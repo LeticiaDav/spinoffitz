@@ -304,6 +304,25 @@ li.list-group-item p {
     margin-bottom: 0;
 }
 
+/*PAGINATION*/
+
+li.page-item a.page-link {
+    /*background-color: rgba(0, 0, 0, 0) !important;*/
+    color: #004D57 !important;
+}
+
+li.page-item.disabled a.page-link {
+    /*background-color: rgba(0, 0, 0, 0) !important;*/
+    color: #A7A7A7 !important;
+}
+
+/*BUSCAR*/
+body.buscar div.card-body {
+    /*background-color: red !important;*/
+    max-height: 70vh;
+    overflow: auto;
+}
+
 /*FOOTER*/
 
 footer.footer {

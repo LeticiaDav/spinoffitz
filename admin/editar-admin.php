@@ -15,7 +15,7 @@ if (!filter_var($id, FILTER_VALIDATE_INT)) {
 	<!-- Content Header (Page header) -->
 	<section class="content-header">
 		<h1>
-			Editar administrador
+			Administradores
 			<small>Llena el formulario para editar un administrador</small>
 		</h1>
 	</section>

@@ -40,10 +40,12 @@ if (!filter_var($id, FILTER_VALIDATE_INT)) {
 								?>
 								<div class="form-group">
 									<label for="titulo_evento">Título</label>
+									<small> (máx. 120 caracteres)</small>
 									<input type="text" class="form-control" id="titulo_evento" name="titulo_evento" placeholder="Ingresa el titulo" value="<?php echo $eventos['tituloEvento']; ?>">
 								</div>
 								<div class="form-group">
 									<label for="lugar_evento">Lugar</label>
+									<small> (máx. 80 caracteres)</small>
 									<input type="text" class="form-control" id="lugar_evento" name="lugar_evento" placeholder="Ingresa el lugar" value="<?php echo $eventos['lugarEvento']; ?>">
 								</div>
 								<div class="form-group">
@@ -74,6 +76,7 @@ if (!filter_var($id, FILTER_VALIDATE_INT)) {
 								</div>
 								<div class="form-group">
 									<label for="cuerpo_evento">Cuerpo</label>
+									<small> (máx. 2000 caracteres)</small>
 									<textarea class="form-control" name="cuerpo_evento" id="cuerpo_evento" rows="10" placeholder="Ingresa el cuerpo del evento"><?php echo $eventos['cuerpoEvento']; ?></textarea>
 								</div>
 								<div class="form-group">
@@ -83,11 +86,13 @@ if (!filter_var($id, FILTER_VALIDATE_INT)) {
 								</div>
 								<div class="form-group">
 									<label for="imagen_evento">Imagen</label>
+									<small> (máx. 2 MB)</small>
 									<input type="file" id="imagen_evento" name="archivo_imagen">
 									<p class="help-block">Añade la imagen del evento.</p>
 								</div>
 								<div class="form-group">
 									<label for="contacto_evento">Contacto</label>
+									<small> (máx. 50 caracteres)</small>
 									<input type="text" class="form-control" id="contacto_evento" name="contacto_evento" placeholder="Ingresa el contacto" value="<?php echo $eventos['contactoEvento']; ?>">
 								</div>
 							</div>

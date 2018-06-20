@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Page Not Found</title>
+    <title>Spin-Off ITZ</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
 
@@ -13,6 +13,7 @@
 
         html {
             color: #888;
+            background-color: #D9D9D9;
             display: table;
             font-family: sans-serif;
             height: 100%;
@@ -53,8 +54,8 @@
     </style>
 </head>
 <body>
-    <h1>Page Not Found</h1>
-    <p>Sorry, but the page you were trying to view does not exist.</p>
+    <h1>Página no encontrada</h1>
+    <p>Disculpa, la página que intentas ver no existe.</p>
 </body>
 </html>
 <!-- IE needs 512+ bytes: https://blogs.msdn.microsoft.com/ieinternals/2010/08/18/friendly-http-error-pages/ -->
